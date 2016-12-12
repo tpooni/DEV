@@ -1,0 +1,64 @@
+﻿@model IEnumerable<LCLFileUpload.Models.tblRentalTagRange>
+@{
+    ViewBag.Title = "List of Tag Ranges";
+}
+<h3>List of Tag Ranges</h3>
+<hr style="color:#c00;background-color:#c00;height:1px;border:none;" />
+
+<p>
+<!--    @Html.ActionLink("Submit New Expenses", "Create") -->
+</p>
+<table>
+
+</table>
+<table>
+    <tr>
+        <!--<th>
+            @Html.DisplayNameFor(model => model.RentalID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RentalID)
+        </th>
+        <th></th>-->
+        <th style="width: 10%">
+            <h7>@Html.DisplayNameFor(model => model.TagValFrom)</h7>
+        </th>
+        <th style="width: 10%">
+            <h7>@Html.DisplayNameFor(model => model.TagValTo)</h7>
+        </th>
+        <th></th>
+        <th style="width: 20%">
+            <h7>@Html.DisplayNameFor(model => model.Description)</h7>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <!--<td>
+            @Html.DisplayFor(modelItem => item.RentalID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RentalID)
+        </td>
+        <td></td>-->
+        <td>
+            <h6>@Html.DisplayFor(modelItem => item.TagValFrom)</h6>
+        </td>
+        <td>
+            <h6>@Html.DisplayFor(modelItem => item.TagValTo)</h6>
+        </td>
+        <td></td>
+        <td>
+            <h6>@Html.DisplayFor(modelItem => item.Description)</h6>
+        </td>
+        <td>
+             <h5>@Html.ActionLink("Delete", "_DeleteTagRange", new { JobNo = Request.Params["JobNo"], TagRangeID=item.TagRangeID })</h5>
+        </td>
+        <td>
+            <h5>@Html.ActionLink("Edit", "_EditTagRange", new { JobNo = Request.Params["JobNo"], TagRangeID=item.TagRangeID })</h5>
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,59 @@
+﻿@model LCLFileUpload.Models.tblRentalTagRange
+@{
+    Layout = null;
+}
+@{
+    ViewBag.Title = "Enter Tag Ranges";
+}
+
+<h3>Enter Tag Ranges</h3>
+<hr style="color:#c00;background-color:#c00;height:1px;border:none;" />
+<br />
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>tblExpenseDetail</legend>
+   
+        <div class="editor-field">
+            @Html.TextBox("TagRangeID",ViewData["TagRangeID"],new { style = "display: none;" })
+            @Html.ValidationMessageFor(model => model.TagRangeID)
+        </div>
+        <div class="editor-field">
+            @Html.TextBox("RentalID",ViewData["RentalID"],new { style = "display: none;" })
+            @Html.ValidationMessageFor(model => model.TagRangeID)
+        </div>
+        <div class="editor-label">
+            <h7>@Html.Label("Tag Value From")</h7>
+        </div>
+        <div class="editor-field">
+            @Html.TextBox("TagValFrom")
+            @Html.ValidationMessageFor(model => model.TagValFrom)
+        </div>
+        <div class="editor-label">
+            <h7>@Html.Label("Tag Value To")</h7>
+        </div>
+        <div class="editor-field">
+            @Html.TextBox("TagValTo")
+            @Html.ValidationMessageFor(model => model.TagValTo)
+        </div>
+        <div class="editor-label">
+            <h7>@Html.Label("Tag Description")</h7>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+        <h4> @ViewBag.Message</h4>
+
+    </fieldset>
+}
+       
+<div>
+  <!--  @Html.ActionLink("Show The Crystal", "ShowReport") -->
+</div>
+

@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "AddNotes";
+}
+
+<h2>AddNotes</h2>
+
+
+@using (@Html.BeginForm("AddNotes", "Data", new { JobNo = Request.Params["JobNo"] }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.TextArea("Notes", string.Empty, 10, 55, null)
+
+    <fieldset>
+        <p>
+            <input type="submit" value="Submit" />
+        </p>
+    </fieldset>
+}
+
+

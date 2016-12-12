@@ -1,0 +1,810 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Rebex.Net.Ssh</name>
+    </assembly>
+    <members>
+        <member name="T:Rebex.Net.Messages">
+            <summary>
+            Provides methods for constructing exception messages.
+            </summary>
+        </member>
+        <member name="T:Rebex.Net.RebexAsyncResult">
+            <summary>
+            Universal class for asynchronous method invocation.
+            </summary>
+        </member>
+        <member name="T:Rebex.Net.SshChannel">
+            <summary>
+            Summary description for SshChannel.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.SshChannel.RequestPseudoTerminal">
+            <summary>
+            Requests a pseudo-terminal.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.SshChannel.RequestShell">
+            <summary>
+            Requests a shell.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.SshChannel.RequestExec(System.String)">
+            <summary>
+            Requests an execution of the specified command.
+            </summary>
+            <param name="command">Command.</param>
+        </member>
+        <member name="M:Rebex.Net.SshChannel.RequestSubsystem(System.String)">
+            <summary>
+            Requests a specified subsystem.
+            </summary>
+            <param name="subsystem">Sybsystem name, such as &quot;sftp&quot;.</param>
+        </member>
+        <member name="M:Rebex.Net.SshChannel.Close">
+            <summary>
+            Closes the current channel.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.SshChannel.GetAvailable">
+            <summary>
+            Gets the number of bytes available in the receive buffer.
+            </summary>
+            <returns>Number of bytes available.</returns>
+            <remarks>If no data is available, the method will process any pending incoming packets.</remarks>
+        </member>
+        <member name="M:Rebex.Net.SshChannel.Receive(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Receives data send by the server through this channel.
+            </summary>
+            <param name="buffer">The storage location for the received data.</param>
+            <param name="offset">The offset to the array at which to place the received data.</param>
+            <param name="count">Number of bytes to receive.</param>
+            <returns>The number of bytes received.</returns>
+        </member>
+        <member name="M:Rebex.Net.SshChannel.Send(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Sends data to the server through this channel.
+            </summary>
+            <param name="buffer">The storage location of the data to be sent.</param>
+            <param name="offset">The offset to the array at which the data starts.</param>
+            <param name="count">Number of bytes to send.</param>
+            <returns>The number of bytes sent.</returns>
+        </member>
+        <member name="P:Rebex.Net.SshChannel.Type">
+            <summary>
+            Gets the type of this channel.
+            </summary>
+            <value>Channel type.</value>
+        </member>
+        <member name="P:Rebex.Net.SshChannel.State">
+            <summary>
+            Gets the state of this channel.
+            </summary>
+            <value>Channel state.</value>
+        </member>
+        <member name="P:Rebex.Net.SshChannel.ExitStatus">
+            <summary>
+            Gets the channel exit status, if available. Otherwise, it returns null.
+            </summary>
+            <value>Channel exit status.</value>
+        </member>
+        <member name="T:Rebex.Net.SshCipher">
+            <summary>
+            Represents an SSH cipher.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.SshCipher.ToString">
+            <summary>
+            Returns a description of the cipher.
+            </summary>
+            <returns>Description of the cipher.</returns>
+        </member>
+        <member name="P:Rebex.Net.SshCipher.OutgoingMacAlgorithm">
+            <summary>
+            Gets the active message authentication code (MAC) algorithm.
+            </summary>
+            <value>Active MAC algorithm.</value>
+        </member>
+        <member name="P:Rebex.Net.SshCipher.OutgoingEncryptionAlgorithm">
+            <summary>
+            Gets the active encryption algorithm.
+            </summary>
+            <value>Active encryption algorithm.</value>
+        </member>
+        <member name="P:Rebex.Net.SshCipher.IncomingMacAlgorithm">
+            <summary>
+            Gets the active message authentication code (MAC) algorithm.
+            </summary>
+            <value>Active MAC algorithm.</value>
+        </member>
+        <member name="P:Rebex.Net.SshCipher.IncomingEncryptionAlgorithm">
+            <summary>
+            Gets the active encryption algorithm.
+            </summary>
+            <value>Active encryption algorithm.</value>
+        </member>
+        <member name="P:Rebex.Net.SshCipher.KeyExchangeAlgorithm">
+            <summary>
+            Gets the key exchange algorithm used during key negotiation.
+            </summary>
+            <value>Key exchange algorithm.</value>
+        </member>
+        <member name="P:Rebex.Net.SshCipher.HostKeyAlgorithm">
+            <summary>
+            Gets the host key algorithm used during key negotiation.
+            </summary>
+            <value>Host key algorithm.</value>
+        </member>
+        <member name="T:Rebex.Net.SshException">
+            <summary>
+            The exception that is thrown when an SSH error occurs.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.SshException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rebex.Net.SshException"/> class with serialized data.
+            </summary>
+            <param name="info">The object that holds the serialized object data.</param>
+            <param name="context">The contextual information about the source or destination.</param>
+        </member>
+        <member name="M:Rebex.Net.SshException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Sets the <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with information about the <see cref="T:Rebex.Net.SshException"/>.
+            </summary>
+            <param name="info">The object that holds the serialized object data.</param>
+            <param name="context">The contextual information about the source or destination.</param>
+        </member>
+        <member name="M:Rebex.Net.SshException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rebex.Net.SshException"/> class.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.SshException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rebex.Net.SshException"/> class with the specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:Rebex.Net.SshException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rebex.Net.SshException"/> class with the specified error message
+            and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+            <param name="inner">The exception that is the cause of the current exception.</param>
+        </member>
+        <member name="P:Rebex.Net.SshException.Reason">
+            <summary>
+            Gets the SSH disconnect error reason.
+            </summary>
+            <value>Error reason.</value>
+        </member>
+        <member name="T:Rebex.Net.SshFingerprint">
+            <summary>
+            Represents the server public key fingerprint.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.SshFingerprint.ToArray">
+            <summary>
+            Returns the fingerprint as a byte array.
+            </summary>
+            <returns>Fingerprint as a byte array.</returns>
+        </member>
+        <member name="M:Rebex.Net.SshFingerprint.ToString">
+            <summary>
+            Returns a string representation of the fingerprint.
+            </summary>
+            <returns>A string representation of the fingerprint.</returns>
+        </member>
+        <member name="T:Rebex.Net.SshChannelExitStatus">
+            <summary>
+            Channel exit status.
+            </summary>
+        </member>
+        <member name="P:Rebex.Net.SshChannelExitStatus.ExitCode">
+            <summary>
+            Gets the process exit code.
+            </summary>
+            <value>Process exit code.</value>
+        </member>
+        <member name="P:Rebex.Net.SshChannelExitStatus.SignalName">
+            <summary>
+            Gets the process signal name if available; or null.
+            </summary>
+            <value>Process signal name.</value>
+        </member>
+        <member name="P:Rebex.Net.SshChannelExitStatus.CoreDumped">
+            <summary>
+            Gets a value indicating whether the process failed with a core dump.
+            </summary>
+            <value>True if core-dumped; false otherwise.</value>
+        </member>
+        <member name="P:Rebex.Net.SshChannelExitStatus.ErrorMessage">
+            <summary>
+            Gets the process error message if available; or null.
+            </summary>
+            <value>Process error message.</value>
+        </member>
+        <member name="T:Rebex.Net.SshMacAlgorithm">
+            <summary>
+            MAC algorithm.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshMacAlgorithm.None">
+            <summary>
+            No MAC algorithm.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshMacAlgorithm.MD5">
+            <summary>
+            MD5 algorithm.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshMacAlgorithm.SHA1">
+            <summary>
+            SHA1 algorithm.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshMacAlgorithm.Any">
+            <summary>
+            Any algorithm.
+            </summary>
+        </member>
+        <member name="T:Rebex.Net.SshEncryptionAlgorithm">
+            <summary>
+            Encryption algorithm.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshEncryptionAlgorithm.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshEncryptionAlgorithm.RC4">
+            <summary>
+            RC4.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshEncryptionAlgorithm.TripleDES">
+            <summary>
+            TripleDES.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshEncryptionAlgorithm.AES">
+            <summary>
+            AES.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshEncryptionAlgorithm.Blowfish">
+            <summary>
+            Blowfish.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshEncryptionAlgorithm.Twofish">
+            <summary>
+            Twofish.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshEncryptionAlgorithm.Any">
+            <summary>
+            Any algorithm.
+            </summary>
+        </member>
+        <member name="T:Rebex.Net.SshKeyExchangeAlgorithm">
+            <summary>
+            Key exchange algorithm.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshKeyExchangeAlgorithm.None">
+            <summary>
+            No algorithm
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshKeyExchangeAlgorithm.DiffieHellmanGroup1SHA1">
+            <summary>
+            Diffie-Hellman, Oakley Group 2.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshKeyExchangeAlgorithm.DiffieHellmanGroup14SHA1">
+            <summary>
+            Diffie-Hellman, Oakley Group 14.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshKeyExchangeAlgorithm.DiffieHellmanGroupExchangeSHA1">
+            <summary>
+            Diffie-Hellman, Group Exchange.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshKeyExchangeAlgorithm.Any">
+            <summary>
+            Any algorithm.
+            </summary>
+        </member>
+        <member name="T:Rebex.Net.SshHostKeyAlgorithm">
+            <summary>
+            Host key algorithm.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshHostKeyAlgorithm.None">
+            <summary>
+            No algorithm
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshHostKeyAlgorithm.RSA">
+            <summary>
+            RSA.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshHostKeyAlgorithm.DSS">
+            <summary>
+            DSS.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshHostKeyAlgorithm.Any">
+            <summary>
+            Any algorithm.
+            </summary>
+        </member>
+        <member name="T:Rebex.Net.SshOptions">
+            <summary>
+            SSH connection options.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshOptions.None">
+            <summary>
+            No options.
+            </summary>
+        </member>
+        <member name="T:Rebex.Net.SshDisconnectReason">
+            <summary>
+            SSH disconnect reason.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshDisconnectReason.Unknown">
+            <summary>Unknown reason.</summary>
+        </member>
+        <member name="F:Rebex.Net.SshDisconnectReason.None">
+            <summary>No reason specified.</summary>
+        </member>
+        <member name="F:Rebex.Net.SshDisconnectReason.HostNotAllowedToConnect">
+            <summary>Host not allowed to connect.</summary>
+        </member>
+        <member name="F:Rebex.Net.SshDisconnectReason.ProtocolError">
+            <summary>Protocol error.</summary>
+        </member>
+        <member name="F:Rebex.Net.SshDisconnectReason.KeyExchangeFailed">
+            <summary>Key exchange failed.</summary>
+        </member>
+        <member name="F:Rebex.Net.SshDisconnectReason.Reserved">
+            <summary>Reserved.</summary>
+        </member>
+        <member name="F:Rebex.Net.SshDisconnectReason.MacError">
+            <summary>Message authentication code error.</summary>
+        </member>
+        <member name="F:Rebex.Net.SshDisconnectReason.CompressionError">
+            <summary>Compression error.</summary>
+        </member>
+        <member name="F:Rebex.Net.SshDisconnectReason.ServiceNotAvailable">
+            <summary>Service not available.</summary>
+        </member>
+        <member name="F:Rebex.Net.SshDisconnectReason.ProtocolVersionNotSupported">
+            <summary>Protocol version not supported.</summary>
+        </member>
+        <member name="F:Rebex.Net.SshDisconnectReason.HostKeyNotVerifiable">
+            <summary>Host key not verifiable.</summary>
+        </member>
+        <member name="F:Rebex.Net.SshDisconnectReason.ConnectionLost">
+            <summary>Connection lost.</summary>
+        </member>
+        <member name="F:Rebex.Net.SshDisconnectReason.DisconnectByApplication">
+            <summary>Disconnect by application.</summary>
+        </member>
+        <member name="F:Rebex.Net.SshDisconnectReason.TooManyConnections">
+            <summary>Too many connections.</summary>
+        </member>
+        <member name="F:Rebex.Net.SshDisconnectReason.AuthenticationCancelledByUser">
+            <summary>Authentication cancelled by user.</summary>
+        </member>
+        <member name="F:Rebex.Net.SshDisconnectReason.NoMoreAuthenticationMethodsAvailable">
+            <summary>No more authentication methods avaialbe.</summary>
+        </member>
+        <member name="F:Rebex.Net.SshDisconnectReason.IllegalUserName">
+            <summary>Illegal user name.</summary>
+        </member>
+        <member name="T:Rebex.Net.SshState">
+            <summary>
+            SSH session state.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshState.Disconnected">
+            <summary>
+            Disconnected.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshState.Connecting">
+            <summary>
+            Connecting.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshState.KeyExchange">
+            <summary>
+            Key exchange.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshState.Ready">
+            <summary>
+            Ready.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshState.Closed">
+            <summary>
+            Closed.
+            </summary>
+        </member>
+        <member name="T:Rebex.Net.SshChannelType">
+            <summary>
+            SSH channel type.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshChannelType.Session">
+            <summary>
+            Session.
+            </summary>
+        </member>
+        <member name="T:Rebex.Net.SshChannelState">
+            <summary>
+            SSH channel state.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshChannelState.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshChannelState.Connected">
+            <summary>
+            Connected.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshChannelState.Closed">
+            <summary>
+            Closed.
+            </summary>
+        </member>
+        <member name="T:Rebex.Net.SshParameters">
+            <summary>
+            Security parameters.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.SshParameters.Clone">
+            <summary>
+            Returns a shallow copy of the current parameters.
+            </summary>
+            <returns>A shallow copy of current parameters.</returns>
+        </member>
+        <member name="M:Rebex.Net.SshParameters.#ctor">
+            <summary>
+            Initializes a new instance of SshParameters with default parameters.
+            </summary>
+        </member>
+        <member name="P:Rebex.Net.SshParameters.Options">
+            <summary>
+            Gets or sets the connection options.
+            </summary>
+            <value>Connection options.</value>
+        </member>
+        <member name="P:Rebex.Net.SshParameters.MacAlgorithms">
+            <summary>
+            Get or sets the allowed message authentication code algorithms.
+            </summary>
+            <value>The group of allowed algorithms.</value>
+        </member>
+        <member name="P:Rebex.Net.SshParameters.EncryptionAlgorithms">
+            <summary>
+            Gets or sets the group of allowed encryption algorithms.
+            </summary>
+            <value>The group of allowed algorithms.</value>
+        </member>
+        <member name="P:Rebex.Net.SshParameters.KeyExchangeAlgorithms">
+            <summary>
+            Gets or sets the group of allowed key exchange algorithms.
+            </summary>
+            <value>The group of allowed algorithms.</value>
+        </member>
+        <member name="P:Rebex.Net.SshParameters.HostKeyAlgorithms">
+            <summary>
+            Gets or sets the group of allowed host key algorithms.
+            </summary>
+            <value>The group of allowed algorithms.</value>
+        </member>
+        <member name="T:Rebex.Net.SshPrivateKey">
+            <summary>
+            Represents the client's RSA or DSA private key. Private key data also includes the public key.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.SshPrivateKey.Generate">
+            <summary>
+            Generates an SSH private key using the RSA algorithm with a key size of 1024 bits.
+            </summary>
+            <returns>SSH private key object.</returns>
+        </member>
+        <member name="M:Rebex.Net.SshPrivateKey.Generate(Rebex.Net.SshHostKeyAlgorithm,System.Int32)">
+            <summary>
+            Generates an SSH private key using the specified algorithm and key size.
+            </summary>
+            <param name="algorithm">Key algorithm. RSA or DSA.</param>
+            <param name="keySize">Key size.</param>
+            <returns>SSH private key object.</returns>
+        </member>
+        <member name="M:Rebex.Net.SshPrivateKey.#ctor(System.String,System.String)">
+            <summary>
+            Loads a PKCS #8 or SSLeay-format RSA or DSA private key from the specified path.
+            </summary>
+            <param name="path">A path to the private key.</param>
+            <param name="password">Password used to encrypted the private key, or null if not password needed.</param>
+        </member>
+        <member name="M:Rebex.Net.SshPrivateKey.#ctor(System.IO.Stream,System.String)">
+            <summary>
+            Loads a PKCS #8 or SSLeay-format RSA or DSA private key from the specified stream.
+            </summary>
+            <param name="input">A stream from which to load the private key.</param>
+            <param name="password">Password used to encrypted the private key, or null if not password needed.</param>
+        </member>
+        <member name="M:Rebex.Net.SshPrivateKey.#ctor(System.Byte[],System.String)">
+            <summary>
+            Loads a PKCS #8 or SSLeay-format RSA or DSA private key from the specified raw data.
+            </summary>
+            <param name="data">Raw private key data.</param>
+            <param name="password">Password used to encrypted the private key, or null if not password needed.</param>
+        </member>
+        <member name="M:Rebex.Net.SshPrivateKey.Save(System.String,System.String,System.Object)">
+            <summary>
+            Saves the private key into the specified file in Base64-encoded PKCS #8 format.
+            </summary>
+            <param name="path">A path to stream to which to save the private key.</param>
+            <param name="password">Password to encrypted the private key, or null if no encryption desired.</param>
+            <param name="encryptionAlgorithm">The algorithm to use for encryption. Ignored if password is null. Null defaults to "3DES".</param>
+            <remarks>
+            The encryptionAlgorithm can accept a String or a Type.
+            Currently, 3DES ("1.2.840.113549.3.7"), DES ("1.3.14.3.2.7") and RC2 ("1.2.840.113549.3.2") algorithms are supported.
+            </remarks>
+        </member>
+        <member name="M:Rebex.Net.SshPrivateKey.Save(System.IO.Stream,System.String,System.Object)">
+            <summary>
+            Saves the private key into the supplied stream in Base64-encoded PKCS #8 format.
+            </summary>
+            <param name="output">A stream to which to save the private key.</param>
+            <param name="password">Password to encrypted the private key, or null if no encryption desired.</param>
+            <param name="encryptionAlgorithm">The algorithm to use for encryption. Ignored if password is null. Null defaults to "3DES".</param>
+            <remarks>
+            The encryptionAlgorithm can accept a String or a Type.
+            Currently, 3DES ("1.2.840.113549.3.7"), DES ("1.3.14.3.2.7") and RC2 ("1.2.840.113549.3.2") algorithms are supported.
+            </remarks>
+        </member>
+        <member name="M:Rebex.Net.SshPrivateKey.SavePublicKey(System.String)">
+            <summary>
+            Saves the public part of the private key into the supplied stream in Base64-encoded 'SSH2 PUBLIC KEY' format.
+            </summary>
+            <param name="path">A path to stream to which to save the public key.</param>
+        </member>
+        <member name="M:Rebex.Net.SshPrivateKey.SavePublicKey(System.IO.Stream)">
+            <summary>
+            Saves the public part of the private key into the supplied stream in Base64-encoded 'SSH2 PUBLIC KEY' format.
+            </summary>
+            <param name="output">A stream to which to save the public key.</param>
+        </member>
+        <member name="M:Rebex.Net.SshPrivateKey.GetPrivateKey">
+            <summary>
+            Gets the raw form of the private key.
+            </summary>
+            <returns>Array of bytes.</returns>
+        </member>
+        <member name="M:Rebex.Net.SshPrivateKey.GetDSAParameters">
+            <summary>
+            Gets the DSA parameters for a DSA key. May only be used for DSA private keys.
+            </summary>
+            <returns>DSA paramaters.</returns>
+        </member>
+        <member name="M:Rebex.Net.SshPrivateKey.GetRSAParameters">
+            <summary>
+            Gets the RSA parameters for a RSA key. May only be used for RSA private keys.
+            </summary>
+            <returns>RSA paramaters.</returns>
+        </member>
+        <member name="M:Rebex.Net.SshPrivateKey.GetPublicKey">
+            <summary>
+            Gets the public key in SSH format.
+            </summary>
+            <returns>Array of bytes.</returns>
+        </member>
+        <member name="P:Rebex.Net.SshPrivateKey.Fingerprint">
+            <summary>
+            Gets the public key fingerprint.
+            </summary>
+            <value>Public key fingerprint.</value>
+        </member>
+        <member name="P:Rebex.Net.SshPrivateKey.KeyAlgorithm">
+            <summary>
+            Gets the key algorithm.
+            </summary>
+            <value>Key algorithm.</value>
+        </member>
+        <member name="T:Rebex.Net.SshSession">
+            <summary>
+            Represents a client-side SSH 2.0 session.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SshSession.DefaultPort">
+            <summary>
+            Default SSH port (22).
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.SshSession.#ctor">
+            <summary>
+            Initializes an instance of the <see cref="T:Rebex.Net.SshSession"/> class.
+            </summary>
+            <remarks>
+            The default constructor initializes an instance of the <see cref="T:Rebex.Net.SshSession"/>.
+            </remarks>
+        </member>
+        <member name="M:Rebex.Net.SshSession.#ctor(System.Net.Sockets.AddressFamily)">
+            <summary>
+            Initializes an instance of the <see cref="T:Rebex.Net.SshSession"/> class with the specified address family.
+            </summary>
+            <param name="addressFamily">Address family.</param>
+        </member>
+        <member name="M:Rebex.Net.SshSession.#ctor(System.Net.Sockets.Socket)">
+            <summary>
+            Initializes an instance of the <see cref="T:Rebex.Net.SshSession"/> class with the specified base socket.
+            </summary>
+            <param name="socket">Base socket.</param>
+        </member>
+        <member name="M:Rebex.Net.SshSession.Close">
+            <summary>
+            Terminates the SSH session.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.SshSession.Connect(System.Net.EndPoint)">
+            <summary>
+            Establishes a connection to an SSH server.
+            </summary>
+            <param name="remoteEP">An <see cref="T:System.Net.EndPoint"/> that represents the remote device.</param>
+            <remarks>
+            The Connect method establishes a network connection to a device identified by the remoteEP
+            parameter. Once the connection has been made, you can send data to the remote device with
+            the Send method, or receive data from the remote device with the Receive method.
+            </remarks>
+        </member>
+        <member name="M:Rebex.Net.SshSession.Negotiate">
+            <summary>
+            Requests and performs an additional key exchange. Not all SSH servers support this.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.SshSession.Authenticate(System.String,Rebex.Net.SshPrivateKey)">
+            <summary>
+            Authenticates to the SSH server using a username and an RSA or DSA private key.
+            </summary>
+            <param name="userName">Username.</param>
+            <param name="privateKey">RSA or DSA private key for key-based authentication.</param>
+        </member>
+        <member name="M:Rebex.Net.SshSession.Authenticate(System.String,System.String)">
+            <summary>
+            Authenticates to the SSH server using a username and password.
+            </summary>
+            <param name="userName">Username.</param>
+            <param name="password">Password.</param>
+        </member>
+        <member name="M:Rebex.Net.SshSession.Authenticate(System.String,System.String,Rebex.Net.SshPrivateKey)">
+            <summary>
+            Authenticates to the SSH server using a username and an RSA or DSA privatey key and a password.
+            </summary>
+            <param name="userName">Username.</param>
+            <param name="password">Password.</param>
+            <param name="privateKey">RSA or DSA private key for key-based authentication.</param>
+            <remarks>This method is supported by GlobalScape SFTP server.</remarks>
+        </member>
+        <member name="M:Rebex.Net.SshSession.OpenChannel(Rebex.Net.SshChannelType,System.Int32)">
+            <summary>
+            Opens a channel of the specified type.
+            </summary>
+            <param name="type">Channel type.</param>
+            <param name="bufferSize">Channel receive buffer size.</param>
+            <returns>SSH channel.</returns>
+        </member>
+        <member name="M:Rebex.Net.SshSession.OpenChannel(Rebex.Net.SshChannelType)">
+            <summary>
+            Opens a channel of the specified type.
+            </summary>
+            <param name="type">Channel type.</param>
+            <returns>SSH channel.</returns>
+        </member>
+        <member name="P:Rebex.Net.SshSession.Timeout">
+            <summary>
+            Gets or sets the 
+            </summary>
+        </member>
+        <member name="P:Rebex.Net.SshSession.Socket">
+            <summary>
+            Gets or sets the internal <see cref="T:System.Net.Sockets.Socket"/> value.
+            </summary>
+            <value>The internal <see cref="T:System.Net.Sockets.Socket"/> value.</value>
+            <remarks>Use with care.</remarks>
+        </member>
+        <member name="P:Rebex.Net.SshSession.RemoteEndPoint">
+            <summary>
+            Gets the remote endpoint.
+            </summary>
+            <value>The remote endpoint that the <see cref="T:Rebex.Net.SshSession"/> is using for communications.</value>
+            <remarks>
+            The RemoteEndPoint property gets the network connection information associated with
+            either the remote host or the proxy server.
+            RemoteEndPoint is set by <see cref="T:Rebex.Net.SshSession"/> methods that establish a connection
+            to a remote host.
+            </remarks>
+        </member>
+        <member name="P:Rebex.Net.SshSession.LocalEndPoint">
+            <summary>
+            Gets the local endpoint.
+            </summary>
+            <value>The local endpoint that the <see cref="T:Rebex.Net.SshSession"/> is using for communications.</value>
+            <remarks>
+            The LocalEndPoint property contains the network connection information associated with the local network device.
+            </remarks>
+        </member>
+        <member name="P:Rebex.Net.SshSession.Connected">
+            <summary>
+            Gets a value indicating whether a <see cref="T:Rebex.Net.SshSession"/> is connected to a remote server.
+            </summary>
+            <value>true if the <see cref="T:Rebex.Net.SshSession"/> is connected to a remote server; otherwise, false.</value>
+            <remarks>
+            <p>
+            Gets the connection state of the <see cref="T:Rebex.Net.SshSession"/>. This property will return
+            the latest known state of the SshSession. When it returns false, the SshSession was either never
+            connected, or no longer connected. When it returns true, the SshSession was connected at the
+            time of the last I/O operation.
+            </p>
+            <p>
+            <b>Note:</b> There is no guarantee that the Socket is still connected even though
+            Connected returns true.
+            </p>
+            </remarks>
+        </member>
+        <member name="P:Rebex.Net.SshSession.Handle">
+            <summary>
+            Gets the operating system handle for the inner <see cref="T:System.Net.Sockets.Socket"/>.
+            </summary>
+            <value>An <see cref="T:System.IntPtr"/> representing the operating system handle for the <see cref="T:System.Net.Sockets.Socket"/>.</value>
+        </member>
+        <member name="P:Rebex.Net.SshSession.Parameters">
+            <summary>
+            Gets or sets the security parameters of the current socket.
+            </summary>
+            <value>The security parameters of the current socket.</value>
+        </member>
+        <member name="P:Rebex.Net.SshSession.Cipher">
+            <summary>
+            Gets the active cipher.
+            </summary>
+            <value>Active cipher.</value>
+        </member>
+        <member name="P:Rebex.Net.SshSession.Fingerprint">
+            <summary>
+            Gets the server public key fingerprint.
+            </summary>
+            <value>Server fingerprint.</value>
+        </member>
+        <member name="P:Rebex.Net.SshSession.State">
+            <summary>
+            Gets the current session state.
+            </summary>
+            <value>Session state.</value>
+        </member>
+        <member name="P:Rebex.Net.SshSession.ServerIdentification">
+            <summary>
+            Gets the server's identification string it returns after connected.
+            </summary>
+            <value>Server's identification string.</value>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<LCLFileUpload.Models.tblRentalTagRange>
+@{
+//    ViewBag.TitleStyleClass = "About";
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "grdEnterTagRanges";
+        settings.KeyFieldName = "TagRangeID";
+        settings.CallbackRouteValues = new { Controller = "Data", Action = "_grdEnterTagRanges", JobNo = Request.Params["JobNo"] };
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+        settings.Theme = "BlackGlass";
+        
+        settings.SettingsPager.PageSize = 20;
+        settings.Settings.VerticalScrollBarMode = ScrollBarMode.Visible;
+        settings.Settings.VerticalScrollableHeight = 500;
+        settings.Settings.VerticalScrollBarStyle = GridViewVerticalScrollBarStyle.Virtual;
+        settings.ControlStyle.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+        settings.ControlStyle.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+        settings.ControlStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+//        settings.SettingsPopup.EditForm.Width = 600;
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Data", Action = "_grdEnterTagRanges", JobNo = Request.Params["JobNo"] };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Data", Action = "_grdEnterTagRanges", JobNo = Request.Params["JobNo"] };
+        //    settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "EnterExpenses", Action = "_grdEditTravelLogUpdate", employeeno = Request.Params["EmployeeNo"] };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = false;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.NewButton.Visible = true;
+        settings.CommandColumn.DeleteButton.Visible = false;
+        settings.CommandColumn.DeleteButton.Text = "Delete";
+        settings.CommandColumn.EditButton.Visible = true;
+        settings.SettingsPager.Visible = false;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
+        settings.Settings.ShowFilterRowMenu = false; 
+        
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.CommandColumn.ShowSelectCheckbox = false;
+        settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = false;
+        settings.SettingsDetail.ShowDetailRow = false;
+
+        settings.Columns.Add("TagValFrom").Width = System.Web.UI.WebControls.Unit.Percentage(20);
+        settings.Columns.Add("TagValTo").Width = System.Web.UI.WebControls.Unit.Percentage(20);
+        settings.Columns.Add("Description").Width = System.Web.UI.WebControls.Unit.Percentage(10);
+        //        settings.Columns.Add("NormalCommute").Width = System.Web.UI.WebControls.Unit.Percentage(10);
+        //        settings.Columns.Add("IOCode",MVCxGridViewColumnType.CheckBox).Width = System.Web.UI.WebControls.Unit.Percentage(7);
+//        settings.Columns.Add("Status").Width = System.Web.UI.WebControls.Unit.Percentage(5);
+//        settings.Columns.Add("Comments").Width = System.Web.UI.WebControls.Unit.Percentage(20);
+
+//        settings.SetDetailRowTemplateContent(c =>
+  //      {
+    //        Html.RenderAction("_grdAuditIOCashExpenses", new { DetailID = DataBinder.Eval(c.DataItem, "DetailID") });
+      //  });
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()
+

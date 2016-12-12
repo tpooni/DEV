@@ -1,0 +1,38 @@
+CREATE PROCEDURE dbo.spMFGetIncludeID
+  @IncludeID int,
+  @ExpirationDays int
+AS  
+  SET NOCOUNT ON  
+
+DECLARE @IncludeVersion int                                       
+DECLARE @NewIncludeID int
+
+  IF (SELECT COUNT(DISTINCT IncludeID)FROM dbo.tblCatalogueInclude_NEW WHERE IncludeID = @IncludeID And Deleted = 0) > 0
+  BEGIN
+	BEGIN TRAN UpdateINC
+	  SELECT @IncludeVersion = Max(IncludeVersion), @NewIncludeID = @IncludeID FROM dbo.tblCatalogueInclude_NEW WHERE IncludeID = @IncludeID And Deleted = 0
+	  UPDATE dbo.tblCatalogueInclude_NEW
+	  SET IncludeVersion = @IncludeVersion + 1
+	IF @@ERROR <> 0  
+        BEGIN  
+          ROLLBACK TRAN UpdateINC  
+        END  
+	COMMIT TRAN UpdateINC  
+  END
+  ELSE
+  BEGIN
+	BEGIN TRAN AddINC
+	  INSERT INTO dbo.tblCatalogueInclude_NEW (IncludeVersion, IncludeDesc, Comments, ReleaseDate, ExpirationDate, InTesting, Deleted, LastEdit,LastEditor,SoftwareStatus,Country)
+	  VALUES (  1, NULL,'No Comments', getdate(), GetDate()+@ExpirationDays,  0,0,getdate(),Null,null,null)
+	  SELECT  @NewIncludeID = IDENT_CURRENT('tblCatalogueInclude_NEW')
+	IF @@ERROR <> 0  
+        BEGIN  
+          ROLLBACK TRAN AddINC  
+        END  
+	COMMIT TRAN AddINC  
+  END
+
+  SELECT IncludeID, IncludeVersion, IncludeDesc, Comments, ReleaseDate, ExpirationDate, InTesting, Deleted, LastEdit,LastEditor,SoftwareStatus,Country
+  FROM dbo.tblCatalogueInclude_NEW 
+  WHERE IncludeID = @NewIncludeID AND Deleted = 0
+GO

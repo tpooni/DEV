@@ -1,0 +1,93 @@
+﻿@model IEnumerable<LCLFileUpload.Models.tblUserInfo>
+@{
+//    ViewBag.TitleStyleClass = "About";
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "grdManageUSers";
+        settings.KeyFieldName = "LoginID";
+        settings.CallbackRouteValues = new { Controller = "Account", Action = "_grdManageUsers"};
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+        settings.Theme = "BlackGlass";
+        
+        settings.SettingsPager.PageSize = 200;
+        settings.Settings.VerticalScrollBarMode = ScrollBarMode.Visible;
+        settings.Settings.VerticalScrollableHeight = 500;
+        settings.Settings.VerticalScrollBarStyle = GridViewVerticalScrollBarStyle.Virtual;
+        settings.ControlStyle.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+        settings.ControlStyle.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+        settings.ControlStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+//        settings.SettingsPopup.EditForm.Width = 600;
+
+//        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Account", Action = "_grdManageUSers", LoginID = Request.Params["LoginID"] };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Account", Action = "_grdManageUSersUpdate"};
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Account", Action = "_grdManageUsersDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+        settings.SettingsText.ConfirmDelete = "Are you sure?";
+        settings.SettingsText.CommandUpdate = "Reset Password";
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.NewButton.Visible = false;
+        settings.CommandColumn.DeleteButton.Visible = true;
+        settings.CommandColumn.DeleteButton.Text = "Disable";
+        
+        settings.CommandColumn.EditButton.Visible = true;
+        settings.CommandColumn.EditButton.Text = "Reset Password";
+        settings.SettingsPager.Visible = false;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
+        settings.Settings.ShowFilterRowMenu = false; 
+        
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.CommandColumn.ShowSelectCheckbox = false;
+        settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = false;
+        settings.SettingsDetail.ShowDetailRow = true;
+
+//        settings.CommandButtonInitialize = (s, e) =>
+  //      {
+    //        if (e.ButtonType == ColumnCommandButtonType.Delete)
+      //      {
+        //        MVCxGridView g = s as MVCxGridView;
+          //      var value = g.GetRowValues(e.VisibleIndex, "webpages_Membership.IsConfirmed");
+            //    if (value.ToString() == "False")
+              //  {
+                //    settings.CommandColumn.DeleteButton.Text = "Enable";
+//                    e.Column.DeleteButton.Text = "Enable";
+               // }
+                //else {
+                  //  e.Column.DeleteButton.Text = "Disable";
+                //}
+            //}
+        //};
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "UserName";
+            column.Caption = "User Name";
+            column.Width = System.Web.UI.WebControls.Unit.Percentage(20);
+        }); 
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "webpages_Membership.LastPasswordFailureDate";
+            column.Caption = "Last Login Failure Date";
+            column.EditFormSettings.Visible = DefaultBoolean.False;
+            column.Width = System.Web.UI.WebControls.Unit.Percentage(20);
+        });
+//        settings.Columns.Add(column =>
+  //      {
+    //        column.FieldName = "webpages_Membership.IsConfirmed";
+      //      column.Caption = "Active";
+        //    column.EditFormSettings.Visible = DefaultBoolean.False;
+          //  column.Width = System.Web.UI.WebControls.Unit.Percentage(20);
+       // });
+        settings.SetDetailRowTemplateContent(c =>
+        {
+            Html.RenderAction("_grdManageUsersStores", new { LoginID = DataBinder.Eval(c.DataItem, "LoginID") });
+        });
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()
+

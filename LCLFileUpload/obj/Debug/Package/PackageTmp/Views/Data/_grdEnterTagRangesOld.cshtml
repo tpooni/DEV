@@ -1,0 +1,43 @@
+﻿
+@{
+    var grid = Html.DevExpress().GridView(
+        settings => {
+            settings.Name = "grdEnterTagRanges";
+            settings.KeyFieldName = "TagRangeID";
+            settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+            settings.Theme = "BlackGlass";
+
+            settings.SettingsPager.PageSize = 20;
+            settings.Settings.VerticalScrollBarMode = ScrollBarMode.Visible;
+            settings.Settings.VerticalScrollableHeight = 500;
+            settings.Settings.VerticalScrollBarStyle = GridViewVerticalScrollBarStyle.Virtual;
+            settings.ControlStyle.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+            settings.ControlStyle.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+            settings.ControlStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1); 
+            
+            settings.CallbackRouteValues = new { Controller = "Data", Action = "_grdEnterTagRanges" };
+            settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Data", Action = "_grdNewEnterTagRanges" };
+            settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Data", Action = "_grdEnterTagRanges" };
+            settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Data", Action = "_grdEnterTagRanges" };
+            settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+
+            settings.CommandColumn.Visible = true;
+            settings.CommandColumn.NewButton.Visible = true;
+            settings.CommandColumn.DeleteButton.Visible = true;
+            settings.CommandColumn.EditButton.Visible = true;
+
+
+            settings.Columns.Add("TagValFrom", MVCxGridViewColumnType.TextBox);
+            settings.Columns.Add("TagValTo", MVCxGridViewColumnType.TextBox);
+            settings.Columns.Add("Description", MVCxGridViewColumnType.TextBox);
+
+            settings.PreRender = (sender, e) => {
+                ((MVCxGridView)sender).StartEdit(1);
+            };
+        });
+
+    if (ViewData["EditError"] != null) {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

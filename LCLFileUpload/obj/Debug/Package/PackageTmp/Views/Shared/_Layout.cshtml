@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<!--        <meta charset="utf-8" />-->
+        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+
+                 @Html.DevExpress().GetStyleSheets( 
+    new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout, Theme = "BlackGlass" }, 
+    new StyleSheet { ExtensionSuite = ExtensionSuite.Editors, Theme = "BlackGlass" }, 
+    new StyleSheet { ExtensionSuite = ExtensionSuite.HtmlEditor, Theme = "BlackGlass" }, 
+    new StyleSheet { ExtensionSuite = ExtensionSuite.GridView, Theme = "BlackGlass" }, 
+    new StyleSheet { ExtensionSuite = ExtensionSuite.PivotGrid, Theme = "BlackGlass"  },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.Chart, Theme = "BlackGlass"  },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.Report , Theme = "BlackGlass" },
+	new StyleSheet { ExtensionSuite = ExtensionSuite.Scheduler, Theme = "BlackGlass"  },
+	new StyleSheet { ExtensionSuite = ExtensionSuite.TreeList , Theme = "BlackGlass" }
+)
+
+                @Html.DevExpress().GetScripts( 
+    new Script { ExtensionSuite = ExtensionSuite.NavigationAndLayout }, 
+    new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }, 
+    new Script { ExtensionSuite = ExtensionSuite.GridView }, 
+    new Script { ExtensionSuite = ExtensionSuite.PivotGrid },
+    new Script { ExtensionSuite = ExtensionSuite.Editors }, 
+    new Script { ExtensionSuite = ExtensionSuite.Chart },
+    new Script { ExtensionSuite = ExtensionSuite.Report },
+	new Script { ExtensionSuite = ExtensionSuite.Scheduler },
+	new Script { ExtensionSuite = ExtensionSuite.TreeList }
+)
+    </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title"> <img src="~/Images/WISLogo.jpg" alt="WIS Logo" width="100px" /> @Html.ActionLink("WIS International - Process  LCL Terminal Files - TEST", "Index", "Home")</p>
+                </div>
+                <div class="float-right">
+                    <section id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>
+                    <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Tag Ranges", "TagRanges", "Data")</li>
+                            <li>@Html.ActionLink("Upload Data", "DownloadData", "Data")</li>
+                            <li>@Html.ActionLink("Confirmation", "Conformation", "Data")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li> 
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+<!--            @RenderSection("featured", required: false)-->
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - WIS International</p>
+                </div>
+            </div>
+        </footer>
+
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

@@ -1,0 +1,898 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WEBWISDOMModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="WEBWISDOMModelStoreContainer">
+          <EntitySet Name="tblJobStatus" EntityType="WEBWISDOMModel.Store.tblJobStatus" store:Type="Tables" store:Schema="dbo" store:Name="tblJobStatus">
+            <DefiningQuery>SELECT 
+      [tblJobStatus].[JobStatusID] AS [JobStatusID], 
+      [tblJobStatus].[RentalID] AS [RentalID], 
+      [tblJobStatus].[Status] AS [Status], 
+      [tblJobStatus].[LastUpdated] AS [LastUpdated], 
+      [tblJobStatus].[LastEditor] AS [LastEditor]
+      FROM [dbo].[tblJobStatus] AS [tblJobStatus]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tblLoginInfo" EntityType="WEBWISDOMModel.Store.tblLoginInfo" store:Type="Tables" store:Schema="dbo" store:Name="tblLoginInfo">
+            <DefiningQuery>SELECT 
+      [tblLoginInfo].[LoginID] AS [LoginID], 
+      [tblLoginInfo].[UserName] AS [UserName], 
+      [tblLoginInfo].[Password] AS [Password], 
+      [tblLoginInfo].[Deleted] AS [Deleted], 
+      [tblLoginInfo].[LastEdit] AS [LastEdit], 
+      [tblLoginInfo].[LastEditor] AS [LastEditor]
+      FROM [dbo].[tblLoginInfo] AS [tblLoginInfo]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tblRentalDLPMStoreLink" EntityType="WEBWISDOMModel.Store.tblRentalDLPMStoreLink" store:Type="Tables" store:Schema="dbo" store:Name="tblRentalDLPMStoreLink">
+            <DefiningQuery>SELECT 
+      [tblRentalDLPMStoreLink].[RecID] AS [RecID], 
+      [tblRentalDLPMStoreLink].[UserID] AS [UserID], 
+      [tblRentalDLPMStoreLink].[StoreNo] AS [StoreNo], 
+      [tblRentalDLPMStoreLink].[email] AS [email], 
+      [tblRentalDLPMStoreLink].[Deleted] AS [Deleted], 
+      [tblRentalDLPMStoreLink].[Lastedit] AS [Lastedit], 
+      [tblRentalDLPMStoreLink].[LastEditor] AS [LastEditor]
+      FROM [dbo].[tblRentalDLPMStoreLink] AS [tblRentalDLPMStoreLink]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tblRentalFileInfo" EntityType="WEBWISDOMModel.Store.tblRentalFileInfo" store:Type="Tables" store:Schema="dbo" store:Name="tblRentalFileInfo">
+            <DefiningQuery>SELECT 
+      [tblRentalFileInfo].[RentalFileTXID] AS [RentalFileTXID], 
+      [tblRentalFileInfo].[RentalID] AS [RentalID], 
+      [tblRentalFileInfo].[TXFileName] AS [TXFileName], 
+      [tblRentalFileInfo].[LoginID] AS [LoginID], 
+      [tblRentalFileInfo].[JobNoMismatch] AS [JobNoMismatch], 
+      [tblRentalFileInfo].[InvalidFile] AS [InvalidFile], 
+      [tblRentalFileInfo].[Deleted] AS [Deleted], 
+      [tblRentalFileInfo].[Lines] AS [Lines], 
+      [tblRentalFileInfo].[Qty] AS [Qty], 
+      [tblRentalFileInfo].[Ext] AS [Ext]
+      FROM [dbo].[tblRentalFileInfo] AS [tblRentalFileInfo]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tblRentalJobInfo" EntityType="WEBWISDOMModel.Store.tblRentalJobInfo" store:Type="Tables" store:Schema="dbo" store:Name="tblRentalJobInfo">
+            <DefiningQuery>SELECT 
+      [tblRentalJobInfo].[RentalID] AS [RentalID], 
+      [tblRentalJobInfo].[JobNo] AS [JobNo], 
+      [tblRentalJobInfo].[JobDateTime] AS [JobDateTime], 
+      [tblRentalJobInfo].[DateReceived] AS [DateReceived], 
+      [tblRentalJobInfo].[CustNo] AS [CustNo], 
+      [tblRentalJobInfo].[OfficeNo] AS [OfficeNo], 
+      [tblRentalJobInfo].[MOR] AS [MOR], 
+      [tblRentalJobInfo].[MOREmail] AS [MOREmail], 
+      [tblRentalJobInfo].[SoftwareID] AS [SoftwareID], 
+      [tblRentalJobInfo].[SoftwareVer] AS [SoftwareVer], 
+      [tblRentalJobInfo].[StoreNo] AS [StoreNo], 
+      [tblRentalJobInfo].[StoreName] AS [StoreName]
+      FROM [dbo].[tblRentalJobInfo] AS [tblRentalJobInfo]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tblRentalTagRange" EntityType="WEBWISDOMModel.Store.tblRentalTagRange" store:Type="Tables" store:Schema="dbo" store:Name="tblRentalTagRange">
+            <DefiningQuery>SELECT 
+      [tblRentalTagRange].[TagRangeID] AS [TagRangeID], 
+      [tblRentalTagRange].[RentalID] AS [RentalID], 
+      [tblRentalTagRange].[TagValFrom] AS [TagValFrom], 
+      [tblRentalTagRange].[TagValTo] AS [TagValTo], 
+      [tblRentalTagRange].[GroupRangeID] AS [GroupRangeID], 
+      [tblRentalTagRange].[Name] AS [Name], 
+      [tblRentalTagRange].[Description] AS [Description], 
+      [tblRentalTagRange].[Seq] AS [Seq], 
+      [tblRentalTagRange].[Deleted] AS [Deleted]
+      FROM [dbo].[tblRentalTagRange] AS [tblRentalTagRange]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tblStatusInfo" EntityType="WEBWISDOMModel.Store.tblStatusInfo" store:Type="Tables" store:Schema="dbo" store:Name="tblStatusInfo">
+            <DefiningQuery>SELECT 
+      [tblStatusInfo].[Staus] AS [Staus], 
+      [tblStatusInfo].[StatusName] AS [StatusName], 
+      [tblStatusInfo].[LastEdit] AS [LastEdit], 
+      [tblStatusInfo].[LastEditor] AS [LastEditor]
+      FROM [dbo].[tblStatusInfo] AS [tblStatusInfo]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tblUserInfo" EntityType="WEBWISDOMModel.Store.tblUserInfo" store:Type="Tables" store:Schema="dbo" store:Name="tblUserInfo">
+            <DefiningQuery>SELECT 
+      [tblUserInfo].[LoginID] AS [LoginID], 
+      [tblUserInfo].[UserName] AS [UserName]
+      FROM [dbo].[tblUserInfo] AS [tblUserInfo]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="webpages_Membership" EntityType="WEBWISDOMModel.Store.webpages_Membership" store:Type="Tables" store:Schema="dbo" store:Name="webpages_Membership">
+            <DefiningQuery>SELECT 
+      [webpages_Membership].[UserId] AS [UserId], 
+      [webpages_Membership].[CreateDate] AS [CreateDate], 
+      [webpages_Membership].[ConfirmationToken] AS [ConfirmationToken], 
+      [webpages_Membership].[IsConfirmed] AS [IsConfirmed], 
+      [webpages_Membership].[LastPasswordFailureDate] AS [LastPasswordFailureDate], 
+      [webpages_Membership].[PasswordFailuresSinceLastSuccess] AS [PasswordFailuresSinceLastSuccess], 
+      [webpages_Membership].[Password] AS [Password], 
+      [webpages_Membership].[PasswordChangedDate] AS [PasswordChangedDate], 
+      [webpages_Membership].[PasswordSalt] AS [PasswordSalt], 
+      [webpages_Membership].[PasswordVerificationToken] AS [PasswordVerificationToken], 
+      [webpages_Membership].[PasswordVerificationTokenExpirationDate] AS [PasswordVerificationTokenExpirationDate]
+      FROM [dbo].[webpages_Membership] AS [webpages_Membership]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="webpages_OAuthMembership" EntityType="WEBWISDOMModel.Store.webpages_OAuthMembership" store:Type="Tables" store:Schema="dbo" store:Name="webpages_OAuthMembership">
+            <DefiningQuery>SELECT 
+      [webpages_OAuthMembership].[Provider] AS [Provider], 
+      [webpages_OAuthMembership].[ProviderUserId] AS [ProviderUserId], 
+      [webpages_OAuthMembership].[UserId] AS [UserId]
+      FROM [dbo].[webpages_OAuthMembership] AS [webpages_OAuthMembership]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="webpages_Roles" EntityType="WEBWISDOMModel.Store.webpages_Roles" store:Type="Tables" store:Schema="dbo" store:Name="webpages_Roles">
+            <DefiningQuery>SELECT 
+      [webpages_Roles].[RoleId] AS [RoleId], 
+      [webpages_Roles].[RoleName] AS [RoleName]
+      FROM [dbo].[webpages_Roles] AS [webpages_Roles]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="webpages_UsersInRoles" EntityType="WEBWISDOMModel.Store.webpages_UsersInRoles" store:Type="Tables" store:Schema="dbo" store:Name="webpages_UsersInRoles">
+            <DefiningQuery>SELECT 
+      [webpages_UsersInRoles].[UserId] AS [UserId], 
+      [webpages_UsersInRoles].[RoleId] AS [RoleId]
+      FROM [dbo].[webpages_UsersInRoles] AS [webpages_UsersInRoles]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'WEBWISDOM.dbo.tblJobStatus' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tblJobStatus">
+          <Key>
+            <PropertyRef Name="JobStatusID" />
+            
+            
+            
+          </Key>
+          <Property Name="JobStatusID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RentalID" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="LastUpdated" Type="smalldatetime" Nullable="false" />
+          <Property Name="LastEditor" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'WEBWISDOM.dbo.tblLoginInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tblLoginInfo">
+          <Key>
+            <PropertyRef Name="LoginID" />
+            
+            
+            
+            
+          </Key>
+          <Property Name="LoginID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="LastEdit" Type="smalldatetime" Nullable="false" />
+          <Property Name="LastEditor" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'WEBWISDOM.dbo.tblRentalDLPMStoreLink' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tblRentalDLPMStoreLink">
+          <Key>
+            <PropertyRef Name="RecID" />
+            
+            
+            
+            
+            
+          </Key>
+          <Property Name="RecID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="StoreNo" Type="char" Nullable="false" MaxLength="12" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="Lastedit" Type="smalldatetime" Nullable="false" />
+          <Property Name="LastEditor" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'WEBWISDOM.dbo.tblRentalFileInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tblRentalFileInfo">
+          <Key>
+            <PropertyRef Name="RentalFileTXID" />
+            
+            
+            
+            
+            
+            
+          </Key>
+          <Property Name="RentalFileTXID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RentalID" Type="int" Nullable="false" />
+          <Property Name="TXFileName" Type="varchar(max)" Nullable="false" />
+          <Property Name="LoginID" Type="int" Nullable="false" />
+          <Property Name="JobNoMismatch" Type="bit" Nullable="false" />
+          <Property Name="InvalidFile" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="Lines" Type="bigint" />
+          <Property Name="Qty" Type="bigint" />
+          <Property Name="Ext" Type="bigint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'WEBWISDOM.dbo.tblRentalJobInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tblRentalJobInfo">
+          <Key>
+            <PropertyRef Name="RentalID" />
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+          </Key>
+          <Property Name="RentalID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="JobNo" Type="int" Nullable="false" />
+          <Property Name="JobDateTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="DateReceived" Type="smalldatetime" Nullable="false" />
+          <Property Name="CustNo" Type="char" Nullable="false" MaxLength="8" />
+          <Property Name="OfficeNo" Type="char" Nullable="false" MaxLength="4" />
+          <Property Name="MOR" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="MOREmail" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="SoftwareID" Type="bigint" Nullable="false" />
+          <Property Name="SoftwareVer" Type="bigint" Nullable="false" />
+          <Property Name="StoreNo" Type="varchar" Nullable="false" MaxLength="12" />
+          <Property Name="StoreName" Type="varchar" Nullable="false" MaxLength="40" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'WEBWISDOM.dbo.tblRentalTagRange' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tblRentalTagRange">
+          <Key>
+            <PropertyRef Name="TagRangeID" />
+            
+            
+            
+            
+          </Key>
+          <Property Name="TagRangeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RentalID" Type="int" Nullable="false" />
+          <Property Name="TagValFrom" Type="int" Nullable="false" />
+          <Property Name="TagValTo" Type="int" Nullable="false" />
+          <Property Name="GroupRangeID" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="Seq" Type="int" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'WEBWISDOM.dbo.tblStatusInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tblStatusInfo">
+          <Key>
+            <PropertyRef Name="Staus" />
+            
+            
+          </Key>
+          <Property Name="Staus" Type="int" Nullable="false" />
+          <Property Name="StatusName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastEdit" Type="smalldatetime" Nullable="false" />
+          <Property Name="LastEditor" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'WEBWISDOM.dbo.tblUserInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tblUserInfo">
+          <Key>
+            <PropertyRef Name="LoginID" />
+            
+          </Key>
+          <Property Name="LoginID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="56" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'WEBWISDOM.dbo.webpages_Membership' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="webpages_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+            
+            
+            
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="ConfirmationToken" Type="nvarchar" MaxLength="128" />
+          <Property Name="IsConfirmed" Type="bit" />
+          <Property Name="LastPasswordFailureDate" Type="datetime" />
+          <Property Name="PasswordFailuresSinceLastSuccess" Type="int" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="PasswordChangedDate" Type="datetime" />
+          <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="PasswordVerificationToken" Type="nvarchar" MaxLength="128" />
+          <Property Name="PasswordVerificationTokenExpirationDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'WEBWISDOM.dbo.webpages_OAuthMembership' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="webpages_OAuthMembership">
+          <Key>
+            <PropertyRef Name="Provider" />
+            <PropertyRef Name="ProviderUserId" />
+            
+          </Key>
+          <Property Name="Provider" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="ProviderUserId" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'WEBWISDOM.dbo.webpages_Roles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="webpages_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+            
+          </Key>
+          <Property Name="RoleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'WEBWISDOM.dbo.webpages_UsersInRoles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="webpages_UsersInRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WEBWISDOMModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="WEBWISDOMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblJobStatus" EntityType="WEBWISDOMModel.tblJobStatu" />
+          <EntitySet Name="tblLoginInfoes" EntityType="WEBWISDOMModel.tblLoginInfo" />
+          <EntitySet Name="tblRentalFileInfoes" EntityType="WEBWISDOMModel.tblRentalFileInfo" />
+          <EntitySet Name="tblRentalJobInfoes" EntityType="WEBWISDOMModel.tblRentalJobInfo" />
+          <EntitySet Name="tblRentalTagRanges" EntityType="WEBWISDOMModel.tblRentalTagRange" />
+          <EntitySet Name="tblStatusInfoes" EntityType="WEBWISDOMModel.tblStatusInfo" />
+          <AssociationSet Name="FK_tblJobStatus_tblRentalJobInfo" Association="WEBWISDOMModel.FK_tblJobStatus_tblRentalJobInfo">
+            <End Role="tblRentalJobInfo" EntitySet="tblRentalJobInfoes" />
+            <End Role="tblJobStatus" EntitySet="tblJobStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblJobStatus_tblStatusInfo" Association="WEBWISDOMModel.FK_tblJobStatus_tblStatusInfo">
+            <End Role="tblStatusInfo" EntitySet="tblStatusInfoes" />
+            <End Role="tblJobStatus" EntitySet="tblJobStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRentalFileInfo_tblRentalFileInfo" Association="WEBWISDOMModel.FK_tblRentalFileInfo_tblRentalFileInfo">
+            <End Role="tblRentalFileInfo" EntitySet="tblRentalFileInfoes" />
+            <End Role="tblRentalFileInfo1" EntitySet="tblRentalFileInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRentalFileInfo_tblRentalJobInfo" Association="WEBWISDOMModel.FK_tblRentalFileInfo_tblRentalJobInfo">
+            <End Role="tblRentalJobInfo" EntitySet="tblRentalJobInfoes" />
+            <End Role="tblRentalFileInfo" EntitySet="tblRentalFileInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRentalTagRange_tblRentalJobInfo" Association="WEBWISDOMModel.FK_tblRentalTagRange_tblRentalJobInfo">
+            <End Role="tblRentalJobInfo" EntitySet="tblRentalJobInfoes" />
+            <End Role="tblRentalTagRange" EntitySet="tblRentalTagRanges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRentalTagRange_tblRentalTagRange" Association="WEBWISDOMModel.FK_tblRentalTagRange_tblRentalTagRange">
+            <End Role="tblRentalTagRange" EntitySet="tblRentalTagRanges" />
+            <End Role="tblRentalTagRange1" EntitySet="tblRentalTagRanges" />
+          </AssociationSet>
+          <EntitySet Name="tblRentalDLPMStoreLinks" EntityType="WEBWISDOMModel.tblRentalDLPMStoreLink" />
+          <EntitySet Name="tblUserInfoes" EntityType="WEBWISDOMModel.tblUserInfo" />
+          <EntitySet Name="webpages_Membership" EntityType="WEBWISDOMModel.webpages_Membership" />
+          <EntitySet Name="webpages_OAuthMembership" EntityType="WEBWISDOMModel.webpages_OAuthMembership" />
+          <EntitySet Name="webpages_Roles" EntityType="WEBWISDOMModel.webpages_Roles" />
+          <AssociationSet Name="webpages_UsersInRoles" Association="WEBWISDOMModel.webpages_UsersInRoles">
+            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+            <End Role="tblLoginInfo" EntitySet="tblLoginInfoes" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(WEBWISDOMModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(WEBWISDOMModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="spAddRentalFile">
+            <Parameter Name="RentalID" Mode="In" Type="Int32" />
+            <Parameter Name="TXFileName" Mode="In" Type="String" />
+            <Parameter Name="LoginID" Mode="In" Type="Int32" />
+            <Parameter Name="JobNoMismatch" Mode="In" Type="Boolean" />
+            <Parameter Name="InvalidFile" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="spAddTagRange">
+            <Parameter Name="RentalID" Mode="In" Type="Int32" />
+            <Parameter Name="TagValFrom" Mode="In" Type="Int32" />
+            <Parameter Name="TagValTo" Mode="In" Type="Int32" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spDeleteTagRange">
+            <Parameter Name="TagRangeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spEditTagRange">
+            <Parameter Name="TagRangeID" Mode="In" Type="Int32" />
+            <Parameter Name="TagValFrom" Mode="In" Type="Int32" />
+            <Parameter Name="TagValTo" Mode="In" Type="Int32" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spFindIfTagRangeExist" ReturnType="Collection(Int32)">
+            <Parameter Name="JobNo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGetJobListForDLPM" ReturnType="Collection(WEBWISDOMModel.spGetJobListForDLPM_Result)">
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGetListOfUploadedFiles" ReturnType="Collection(WEBWISDOMModel.spGetListOfUploadedFiles_Result)">
+            <Parameter Name="RentalID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGetLoginInfo" ReturnType="Collection(WEBWISDOMModel.spGetLoginInfo_Result)" />
+          <FunctionImport Name="spGetRentalID" ReturnType="Collection(Int32)">
+            <Parameter Name="JobNo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <AssociationSet Name="tblUserInfowebpages_Membership" Association="WEBWISDOMModel.tblUserInfowebpages_Membership">
+            <End Role="tblUserInfo" EntitySet="tblUserInfoes" />
+            <End Role="webpages_Membership" EntitySet="webpages_Membership" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblJobStatu">
+          <Key>
+            <PropertyRef Name="JobStatusID" />
+          </Key>
+          <Property Name="JobStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RentalID" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LastEditor" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="tblRentalJobInfo" Relationship="WEBWISDOMModel.FK_tblJobStatus_tblRentalJobInfo" FromRole="tblJobStatus" ToRole="tblRentalJobInfo" />
+          <NavigationProperty Name="tblStatusInfo" Relationship="WEBWISDOMModel.FK_tblJobStatus_tblStatusInfo" FromRole="tblJobStatus" ToRole="tblStatusInfo" />
+        </EntityType>
+        <EntityType Name="tblLoginInfo">
+          <Key>
+            <PropertyRef Name="LoginID" />
+          </Key>
+          <Property Name="LoginID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="LastEdit" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LastEditor" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="webpages_Roles" Relationship="WEBWISDOMModel.webpages_UsersInRoles" FromRole="tblLoginInfo" ToRole="webpages_Roles" />
+        </EntityType>
+        <EntityType Name="tblRentalFileInfo">
+          <Key>
+            <PropertyRef Name="RentalFileTXID" />
+          </Key>
+          <Property Name="RentalFileTXID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RentalID" Type="Int32" Nullable="false" />
+          <Property Name="TXFileName" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblRentalFileInfo1" Relationship="WEBWISDOMModel.FK_tblRentalFileInfo_tblRentalFileInfo" FromRole="tblRentalFileInfo" ToRole="tblRentalFileInfo1" />
+          <NavigationProperty Name="tblRentalFileInfo2" Relationship="WEBWISDOMModel.FK_tblRentalFileInfo_tblRentalFileInfo" FromRole="tblRentalFileInfo1" ToRole="tblRentalFileInfo" />
+          <NavigationProperty Name="tblRentalJobInfo" Relationship="WEBWISDOMModel.FK_tblRentalFileInfo_tblRentalJobInfo" FromRole="tblRentalFileInfo" ToRole="tblRentalJobInfo" />
+          <Property Type="Int32" Name="LoginID" Nullable="false" />
+          <Property Type="Boolean" Name="JobNoMismatch" Nullable="false" />
+          <Property Type="Boolean" Name="InvalidFile" Nullable="false" />
+          <Property Type="Int64" Name="Lines" />
+          <Property Type="Int64" Name="Qty" />
+          <Property Type="Int64" Name="Ext" />
+        </EntityType>
+        <EntityType Name="tblRentalJobInfo">
+          <Key>
+            <PropertyRef Name="RentalID" />
+          </Key>
+          <Property Name="RentalID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobNo" Type="Int32" Nullable="false" />
+          <Property Name="JobDateTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateReceived" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CustNo" Type="String" MaxLength="8" Unicode="false" FixedLength="true" Nullable="false" />
+          <Property Name="OfficeNo" Type="String" MaxLength="4" Unicode="false" FixedLength="true" Nullable="false" />
+          <Property Name="MOR" Type="String" MaxLength="30" Unicode="false" FixedLength="false" Nullable="false" />
+          <Property Name="MOREmail" Type="String" MaxLength="50" Unicode="false" FixedLength="false" Nullable="false" />
+          <Property Name="SoftwareID" Type="Int64" Nullable="false" />
+          <Property Name="SoftwareVer" Type="Int64" Nullable="false" />
+          <Property Name="StoreNo" Type="String" MaxLength="12" Unicode="false" FixedLength="false" Nullable="false" />
+          <Property Name="StoreName" Type="String" MaxLength="40" Unicode="false" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="tblJobStatus" Relationship="WEBWISDOMModel.FK_tblJobStatus_tblRentalJobInfo" FromRole="tblRentalJobInfo" ToRole="tblJobStatus" />
+          <NavigationProperty Name="tblRentalFileInfoes" Relationship="WEBWISDOMModel.FK_tblRentalFileInfo_tblRentalJobInfo" FromRole="tblRentalJobInfo" ToRole="tblRentalFileInfo" />
+          <NavigationProperty Name="tblRentalTagRanges" Relationship="WEBWISDOMModel.FK_tblRentalTagRange_tblRentalJobInfo" FromRole="tblRentalJobInfo" ToRole="tblRentalTagRange" />
+        </EntityType>
+        <EntityType Name="tblRentalTagRange">
+          <Key>
+            <PropertyRef Name="TagRangeID" />
+          </Key>
+          <Property Name="TagRangeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RentalID" Type="Int32" Nullable="false" />
+          <Property Name="TagValFrom" Type="Int32" Nullable="false" />
+          <Property Name="TagValTo" Type="Int32" Nullable="false" />
+          <Property Name="GroupRangeID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Seq" Type="Int32" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblRentalJobInfo" Relationship="WEBWISDOMModel.FK_tblRentalTagRange_tblRentalJobInfo" FromRole="tblRentalTagRange" ToRole="tblRentalJobInfo" />
+          <NavigationProperty Name="tblRentalTagRange1" Relationship="WEBWISDOMModel.FK_tblRentalTagRange_tblRentalTagRange" FromRole="tblRentalTagRange" ToRole="tblRentalTagRange1" />
+          <NavigationProperty Name="tblRentalTagRange2" Relationship="WEBWISDOMModel.FK_tblRentalTagRange_tblRentalTagRange" FromRole="tblRentalTagRange1" ToRole="tblRentalTagRange" />
+        </EntityType>
+        <EntityType Name="tblStatusInfo">
+          <Key>
+            <PropertyRef Name="Staus" />
+          </Key>
+          <Property Name="Staus" Type="Int32" Nullable="false" />
+          <Property Name="StatusName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="LastEdit" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LastEditor" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="tblJobStatus" Relationship="WEBWISDOMModel.FK_tblJobStatus_tblStatusInfo" FromRole="tblStatusInfo" ToRole="tblJobStatus" />
+        </EntityType>
+        <Association Name="FK_tblJobStatus_tblRentalJobInfo">
+          <End Role="tblRentalJobInfo" Type="WEBWISDOMModel.tblRentalJobInfo" Multiplicity="1" />
+          <End Role="tblJobStatus" Type="WEBWISDOMModel.tblJobStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRentalJobInfo">
+              <PropertyRef Name="RentalID" />
+            </Principal>
+            <Dependent Role="tblJobStatus">
+              <PropertyRef Name="RentalID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblJobStatus_tblStatusInfo">
+          <End Role="tblStatusInfo" Type="WEBWISDOMModel.tblStatusInfo" Multiplicity="1" />
+          <End Role="tblJobStatus" Type="WEBWISDOMModel.tblJobStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStatusInfo">
+              <PropertyRef Name="Staus" />
+            </Principal>
+            <Dependent Role="tblJobStatus">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRentalFileInfo_tblRentalFileInfo">
+          <End Role="tblRentalFileInfo" Type="WEBWISDOMModel.tblRentalFileInfo" Multiplicity="1" />
+          <End Role="tblRentalFileInfo1" Type="WEBWISDOMModel.tblRentalFileInfo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblRentalFileInfo">
+              <PropertyRef Name="RentalFileTXID" />
+            </Principal>
+            <Dependent Role="tblRentalFileInfo1">
+              <PropertyRef Name="RentalFileTXID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRentalFileInfo_tblRentalJobInfo">
+          <End Role="tblRentalJobInfo" Type="WEBWISDOMModel.tblRentalJobInfo" Multiplicity="1" />
+          <End Role="tblRentalFileInfo" Type="WEBWISDOMModel.tblRentalFileInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRentalJobInfo">
+              <PropertyRef Name="RentalID" />
+            </Principal>
+            <Dependent Role="tblRentalFileInfo">
+              <PropertyRef Name="RentalID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRentalTagRange_tblRentalJobInfo">
+          <End Role="tblRentalJobInfo" Type="WEBWISDOMModel.tblRentalJobInfo" Multiplicity="1" />
+          <End Role="tblRentalTagRange" Type="WEBWISDOMModel.tblRentalTagRange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRentalJobInfo">
+              <PropertyRef Name="RentalID" />
+            </Principal>
+            <Dependent Role="tblRentalTagRange">
+              <PropertyRef Name="RentalID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRentalTagRange_tblRentalTagRange">
+          <End Role="tblRentalTagRange" Type="WEBWISDOMModel.tblRentalTagRange" Multiplicity="1" />
+          <End Role="tblRentalTagRange1" Type="WEBWISDOMModel.tblRentalTagRange" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblRentalTagRange">
+              <PropertyRef Name="TagRangeID" />
+            </Principal>
+            <Dependent Role="tblRentalTagRange1">
+              <PropertyRef Name="TagRangeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblRentalDLPMStoreLink">
+          <Key>
+            <PropertyRef Name="RecID" />
+          </Key>
+          <Property Type="Int32" Name="RecID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="String" Name="StoreNo" Nullable="false" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="email" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Deleted" Nullable="false" />
+          <Property Type="DateTime" Name="Lastedit" Nullable="false" Precision="0" />
+          <Property Type="String" Name="LastEditor" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblUserInfo">
+          <Key>
+            <PropertyRef Name="LoginID" />
+          </Key>
+          <Property Type="Int32" Name="LoginID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="56" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="webpages_Membership" Relationship="WEBWISDOMModel.tblUserInfowebpages_Membership" FromRole="tblUserInfo" ToRole="webpages_Membership" />
+        </EntityType>
+        <EntityType Name="webpages_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDate" Precision="3" />
+          <Property Type="String" Name="ConfirmationToken" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsConfirmed" />
+          <Property Type="DateTime" Name="LastPasswordFailureDate" Precision="3" />
+          <Property Type="Int32" Name="PasswordFailuresSinceLastSuccess" Nullable="false" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="PasswordChangedDate" Precision="3" />
+          <Property Type="String" Name="PasswordSalt" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PasswordVerificationToken" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="PasswordVerificationTokenExpirationDate" Precision="3" />
+          <NavigationProperty Name="tblUserInfo" Relationship="WEBWISDOMModel.tblUserInfowebpages_Membership" FromRole="webpages_Membership" ToRole="tblUserInfo" />
+        </EntityType>
+        <EntityType Name="webpages_OAuthMembership">
+          <Key>
+            <PropertyRef Name="Provider" />
+            <PropertyRef Name="ProviderUserId" />
+          </Key>
+          <Property Type="String" Name="Provider" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProviderUserId" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webpages_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Type="Int32" Name="RoleId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="RoleName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblLoginInfoes" Relationship="WEBWISDOMModel.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="tblLoginInfo" />
+        </EntityType>
+        <Association Name="webpages_UsersInRoles">
+          <End Type="WEBWISDOMModel.webpages_Roles" Role="webpages_Roles" Multiplicity="*" />
+          <End Type="WEBWISDOMModel.tblLoginInfo" Role="tblLoginInfo" Multiplicity="*" />
+        </Association>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spGetJobListForDLPM_Result">
+          <Property Type="Int32" Name="Select" Nullable="true" />
+          <Property Type="String" Name="StoreName" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="StoreNo" Nullable="true" MaxLength="12" />
+          <Property Type="Int32" Name="JobNo" Nullable="true" />
+          <Property Type="DateTime" Name="JobDateTime" Nullable="false" Precision="23" />
+          <Property Type="String" Name="OfficeNoOfRecord" Nullable="false" MaxLength="4" />
+        </ComplexType>
+        <ComplexType Name="spGetListOfUploadedFiles_Result">
+          <Property Type="Int32" Name="Select" Nullable="false" />
+          <Property Type="String" Name="TXFileName" Nullable="false" />
+          <Property Type="Int32" Name="LoginID" Nullable="false" />
+          <Property Type="Boolean" Name="jobNomismatch" Nullable="false" />
+          <Property Type="Boolean" Name="invalidfile" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spGetLoginInfo_Result">
+          <Property Type="Int32" Name="LoginID" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="56" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="128" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ConfirmationToken" Nullable="true" MaxLength="128" />
+          <Property Type="Boolean" Name="IsConfirmed" Nullable="true" />
+          <Property Type="DateTime" Name="LastPasswordFailureDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="PasswordChangedDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="PasswordVerificationToken" Nullable="true" MaxLength="128" />
+        </ComplexType>
+        <Association Name="tblUserInfowebpages_Membership">
+          <End Type="WEBWISDOMModel.tblUserInfo" Role="tblUserInfo" Multiplicity="1" />
+          <End Type="WEBWISDOMModel.webpages_Membership" Role="webpages_Membership" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="tblUserInfo">
+              <PropertyRef Name="LoginID" />
+            </Principal>
+            <Dependent Role="webpages_Membership">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WEBWISDOMModelStoreContainer" CdmEntityContainer="WEBWISDOMEntities">
+          <EntitySetMapping Name="tblJobStatus">
+            <EntityTypeMapping TypeName="WEBWISDOMModel.tblJobStatu">
+              <MappingFragment StoreEntitySet="tblJobStatus">
+                <ScalarProperty Name="JobStatusID" ColumnName="JobStatusID" />
+                <ScalarProperty Name="RentalID" ColumnName="RentalID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="LastEditor" ColumnName="LastEditor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLoginInfoes">
+            <EntityTypeMapping TypeName="WEBWISDOMModel.tblLoginInfo">
+              <MappingFragment StoreEntitySet="tblLoginInfo">
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="LastEdit" ColumnName="LastEdit" />
+                <ScalarProperty Name="LastEditor" ColumnName="LastEditor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRentalFileInfoes">
+            <EntityTypeMapping TypeName="WEBWISDOMModel.tblRentalFileInfo">
+              <MappingFragment StoreEntitySet="tblRentalFileInfo">
+                <ScalarProperty Name="Ext" ColumnName="Ext" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Lines" ColumnName="Lines" />
+                <ScalarProperty Name="InvalidFile" ColumnName="InvalidFile" />
+                <ScalarProperty Name="JobNoMismatch" ColumnName="JobNoMismatch" />
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+                <ScalarProperty Name="RentalFileTXID" ColumnName="RentalFileTXID" />
+                <ScalarProperty Name="RentalID" ColumnName="RentalID" />
+                <ScalarProperty Name="TXFileName" ColumnName="TXFileName" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRentalJobInfoes">
+            <EntityTypeMapping TypeName="WEBWISDOMModel.tblRentalJobInfo">
+              <MappingFragment StoreEntitySet="tblRentalJobInfo">
+                <ScalarProperty Name="RentalID" ColumnName="RentalID" />
+                <ScalarProperty Name="JobNo" ColumnName="JobNo" />
+                <ScalarProperty Name="JobDateTime" ColumnName="JobDateTime" />
+                <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
+                <ScalarProperty Name="CustNo" ColumnName="CustNo" />
+                <ScalarProperty Name="OfficeNo" ColumnName="OfficeNo" />
+                <ScalarProperty Name="MOR" ColumnName="MOR" />
+                <ScalarProperty Name="MOREmail" ColumnName="MOREmail" />
+                <ScalarProperty Name="SoftwareID" ColumnName="SoftwareID" />
+                <ScalarProperty Name="SoftwareVer" ColumnName="SoftwareVer" />
+                <ScalarProperty Name="StoreNo" ColumnName="StoreNo" />
+                <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRentalTagRanges">
+            <EntityTypeMapping TypeName="WEBWISDOMModel.tblRentalTagRange">
+              <MappingFragment StoreEntitySet="tblRentalTagRange">
+                <ScalarProperty Name="TagRangeID" ColumnName="TagRangeID" />
+                <ScalarProperty Name="RentalID" ColumnName="RentalID" />
+                <ScalarProperty Name="TagValFrom" ColumnName="TagValFrom" />
+                <ScalarProperty Name="TagValTo" ColumnName="TagValTo" />
+                <ScalarProperty Name="GroupRangeID" ColumnName="GroupRangeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Seq" ColumnName="Seq" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStatusInfoes">
+            <EntityTypeMapping TypeName="WEBWISDOMModel.tblStatusInfo">
+              <MappingFragment StoreEntitySet="tblStatusInfo">
+                <ScalarProperty Name="Staus" ColumnName="Staus" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="LastEdit" ColumnName="LastEdit" />
+                <ScalarProperty Name="LastEditor" ColumnName="LastEditor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRentalDLPMStoreLinks">
+            <EntityTypeMapping TypeName="WEBWISDOMModel.tblRentalDLPMStoreLink">
+              <MappingFragment StoreEntitySet="tblRentalDLPMStoreLink">
+                <ScalarProperty Name="LastEditor" ColumnName="LastEditor" />
+                <ScalarProperty Name="Lastedit" ColumnName="Lastedit" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="StoreNo" ColumnName="StoreNo" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="RecID" ColumnName="RecID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserInfoes">
+            <EntityTypeMapping TypeName="WEBWISDOMModel.tblUserInfo">
+              <MappingFragment StoreEntitySet="tblUserInfo">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_Membership">
+            <EntityTypeMapping TypeName="WEBWISDOMModel.webpages_Membership">
+              <MappingFragment StoreEntitySet="webpages_Membership">
+                <ScalarProperty Name="PasswordVerificationTokenExpirationDate" ColumnName="PasswordVerificationTokenExpirationDate" />
+                <ScalarProperty Name="PasswordVerificationToken" ColumnName="PasswordVerificationToken" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="PasswordChangedDate" ColumnName="PasswordChangedDate" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PasswordFailuresSinceLastSuccess" ColumnName="PasswordFailuresSinceLastSuccess" />
+                <ScalarProperty Name="LastPasswordFailureDate" ColumnName="LastPasswordFailureDate" />
+                <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+                <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_OAuthMembership">
+            <EntityTypeMapping TypeName="WEBWISDOMModel.webpages_OAuthMembership">
+              <MappingFragment StoreEntitySet="webpages_OAuthMembership">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderUserId" ColumnName="ProviderUserId" />
+                <ScalarProperty Name="Provider" ColumnName="Provider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_Roles">
+            <EntityTypeMapping TypeName="WEBWISDOMModel.webpages_Roles">
+              <MappingFragment StoreEntitySet="webpages_Roles">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="webpages_UsersInRoles" TypeName="WEBWISDOMModel.webpages_UsersInRoles" StoreEntitySet="webpages_UsersInRoles">
+            <EndProperty Name="tblLoginInfo">
+              <ScalarProperty Name="LoginID" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="webpages_Roles">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

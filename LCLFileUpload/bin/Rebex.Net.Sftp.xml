@@ -1,0 +1,1727 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Rebex.Net.Sftp</name>
+    </assembly>
+    <members>
+        <member name="T:Rebex.Net.Messages">
+            <summary>
+            Provides methods for constructing exception messages.
+            </summary>
+        </member>
+        <member name="T:Rebex.Net.RebexAsyncResult">
+            <summary>
+            Universal class for asynchronous method invocation.
+            </summary>
+        </member>
+        <member name="T:Rebex.Net.Sftp">
+            <summary>
+            Provides methods for communication with SFTP servers.
+            </summary>
+            <remarks>All members of this class are thread-safe.</remarks>
+        </member>
+        <member name="F:Rebex.Net.Sftp.DefaultPort">
+            <summary>
+            Default SFTP port (22).
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.Sftp.OnResponseRead(Rebex.Net.SftpResponseReadEventArgs)">
+            <summary>
+            Raises the <see cref="E:Rebex.Net.Sftp.ResponseRead"/> event.
+            </summary>
+            <param name="e">A <see cref="T:Rebex.Net.SftpResponseReadEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Rebex.Net.Sftp.OnCommandSent(Rebex.Net.SftpCommandSentEventArgs)">
+            <summary>
+            Raises the <see cref="E:Rebex.Net.Sftp.CommandSent"/> event.
+            </summary>
+            <param name="e">A <see cref="T:Rebex.Net.SftpCommandSentEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Rebex.Net.Sftp.OnStateChanged(Rebex.Net.SftpStateChangedEventArgs)">
+            <summary>
+            Raises the <see cref="E:Rebex.Net.Sftp.StateChanged"/> event.
+            </summary>
+            <param name="e">A <see cref="T:Rebex.Net.SftpStateChangedEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Rebex.Net.Sftp.OnTransferProgress(Rebex.Net.SftpTransferProgressEventArgs)">
+            <summary>
+            Raises the <see cref="E:Rebex.Net.Sftp.TransferProgress"/> event.
+            </summary>
+            <param name="e">A <see cref="T:Rebex.Net.SftpTransferProgressEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Rebex.Net.Sftp.#ctor">
+            <summary>
+            Initializes a new instance of the Sftp class.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.Sftp.Dispose">
+            <summary>
+            Disposes the <see cref="T:Rebex.Net.Sftp"/> object and all the socket objects.
+            </summary>
+            <remarks>
+            Calling this method ensures that all resources are freed.
+            It is not necessary to call this method if the SFTP session is
+            successfully closed using <see cref="M:Rebex.Net.Sftp.Disconnect">Disconnect</see> method.
+            </remarks>
+        </member>
+        <member name="M:Rebex.Net.Sftp.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources used by the <see cref="T:Rebex.Net.Sftp"/>
+            and optionally releases the managed resources.
+            </summary>
+            <param name="disposing"><b>true</b> to release both managed and unmanaged resources; <b>false</b> to release only unmanaged resources.</param>
+        </member>
+        <member name="M:Rebex.Net.Sftp.Finalize">
+            <summary>
+            Finalizer. Called by garbage collector during object destruction.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.Sftp.AbortTransfer(System.Object)">
+            <summary>
+            Aborts pending transfers (either file transfer or directory listing) identified by the specified user-provided state object.
+            </summary>
+            <param name="state">A user-provided object that identifies the particular asynchronous transfer.</param>
+        </member>
+        <member name="M:Rebex.Net.Sftp.AbortTransfer">
+            <summary>
+            Aborts all pending file transfers (either file transfer or directory listing).
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.Sftp.Connect(System.String)">
+            <summary>
+            Connects to the SFTP server.
+            </summary>
+            <param name="serverName">The server address - either a hostname or a dotted string address.</param>
+        </member>
+        <member name="M:Rebex.Net.Sftp.Connect(System.String,System.Int32)">
+            <summary>
+            Connects to the SFTP server.
+            </summary>
+            <param name="serverName">The server address - either a hostname or a dotted string address.</param>
+            <param name="serverPort">The server port (eg. 22).</param>
+        </member>
+        <member name="M:Rebex.Net.Sftp.Connect(System.String,System.Int32,Rebex.Net.SshParameters)">
+            <summary>
+            Connects to the SFTP server with the specified security parameters.
+            </summary>
+            <param name="serverName">The server address - either a hostname or a dotted string address.</param>
+            <param name="serverPort">The server port (eg. 22).</param>
+            <param name="parameters">Security parameters</param>
+        </member>
+        <member name="M:Rebex.Net.Sftp.Disconnect">
+            <summary>
+            Informs the server that the connection is about to close and
+            terminates the connection.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.Sftp.Login(System.String,System.String)">
+            <summary>
+            Authenticates the user to the server and initializes the SFTP session.
+            </summary>
+            <param name="userName">The username.</param>
+            <param name="password">Password for the specified username.</param>
+        </member>
+        <member name="M:Rebex.Net.Sftp.Login(System.String,Rebex.Net.SshPrivateKey)">
+            <summary>
+            Authenticates the user to the server using his private key and initializes the SFTP session.
+            </summary>
+            <param name="userName">The username.</param>
+            <param name="privateKey">RSA or DSA private key for key-based authentication.</param>
+        </member>
+        <member name="M:Rebex.Net.Sftp.Login(System.String,System.String,Rebex.Net.SshPrivateKey)">
+            <summary>
+            Authenticates the user to the server using a combination of password and public key and initializes the SFTP session.
+            </summary>
+            <param name="userName">The username.</param>
+            <param name="password">Password for the specified username.</param>
+            <param name="privateKey">RSA or DSA private key for key-based authentication.</param>
+            <remarks>This method is supported by GlobalScape SFTP server.</remarks>
+        </member>
+        <member name="M:Rebex.Net.Sftp.Rename(System.String,System.String)">
+            <summary>
+            Renames a file or directory on the server.
+            </summary>
+            <param name="fromPath">The pathname of the remote file to be renamed.</param>
+            <param name="toPath">The pathname to rename the file to.</param>
+        </member>
+        <member name="M:Rebex.Net.Sftp.DeleteFile(System.String)">
+            <summary>
+            Deletes a file on the server.
+            </summary>
+            <param name="remotePath">The path to the file to be deleted.</param>
+        </member>
+        <member name="M:Rebex.Net.Sftp.ChangeDirectory(System.String)">
+            <summary>
+            Changes the current working directory on the server.
+            </summary>
+            <param name="remotePath">Path of the directory to change to.</param>
+        </member>
+        <member name="M:Rebex.Net.Sftp.CreateDirectory(System.String)">
+            <summary>
+            Creates a directory on the server.
+            </summary>
+            <param name="remotePath">Pathname of the new remote directory.</param>
+            <returns>A string containing the absolute path of the newly created remote directory.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.RemoveDirectory(System.String)">
+            <summary>
+            Deletes an empty remote directory with the specified pathname.
+            </summary>
+            <param name="remotePath">Remote directory pathname.</param>
+        </member>
+        <member name="M:Rebex.Net.Sftp.ResolveSymlink(System.String)">
+            <summary>
+            Resolves the symlink and returns the real path.
+            </summary>
+            <param name="remotePath">The symlink path.</param>
+            <returns>Real path.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.GetInfo(System.String,System.Boolean)">
+            <summary>
+            Retrieves a <see cref="T:Rebex.Net.SftpItem"/> containing the information about the specified remote file or directory.
+            </summary>
+            <param name="remotePath">The path of the remote file or directory.</param>
+            <param name="failIfNotFound">Specifies whether to throw an exception if file not found.</param>
+            <returns>Information about the remote file or directory.</returns>
+            <remarks>Returns null if no file is found and failIfNotFound argument is set to false.</remarks>
+        </member>
+        <member name="M:Rebex.Net.Sftp.SetAttributes(System.String,Rebex.Net.SftpAttributes)">
+            <summary>
+            Sets the attributes of the remote file.
+            </summary>
+            <param name="remotePath">The path of the remote file or directory.</param>
+            <param name="attributes">Attributes to set.</param>
+        </member>
+        <member name="M:Rebex.Net.Sftp.SetFileDateTime(System.String,System.DateTime)">
+            <summary>
+            Sets the modification date and time of the specified remote file.
+            </summary>
+            <param name="remotePath">The path of the remote file.</param>
+            <param name="newDateTime">The date and time to set.</param>
+        </member>
+        <member name="M:Rebex.Net.Sftp.CheckConnectionState">
+            <summary>
+            Checks whether the SFTP session is still connected. Throws an exception on error.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.Sftp.GetConnectionState">
+            <summary>
+            Checks whether the SFTP session is still connected and returns its state.
+            </summary>
+            <returns>Connection state.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.GetUploadStream(System.String)">
+            <summary>
+            Returns a Stream for writing data to the remote file.
+            </summary>
+            <param name="remotePath">The path of the remote file.</param>
+            <returns>A Stream for writing data to the remote file</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.GetDownloadStream(System.String)">
+            <summary>
+            Returns a Stream for reading data from the remote file.
+            </summary>
+            <param name="remotePath">The path of the remote file.</param>
+            <returns>A Stream for reading data from the remote file</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.GetInfo(System.String)">
+            <summary>
+            Retrieves a <see cref="T:Rebex.Net.SftpItem"/> containing the information about the specified remote file or directory.
+            </summary>
+            <param name="remotePath">The path of the remote file or directory.</param>
+            <returns>Information about the remote file or directory.</returns>
+            <remarks>Fails if path not found.</remarks>
+        </member>
+        <member name="M:Rebex.Net.Sftp.GetCurrentDirectory">
+            <summary>
+            Gets the absolute path of the current working directory on the remote server.
+            </summary>
+            <returns>A string containing the absolute path of the current working remote directory.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.GetFileLength(System.String)">
+            <summary>
+            Retrieves the size of the specified remote file.
+            </summary>
+            <param name="remotePath">The path of the remote file. This cannot be a directory.</param>
+            <returns>The size of the specified file in bytes.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.GetFileDateTime(System.String)">
+            <summary>
+            Retrieves the modification date and time of the specified remote file.
+            </summary>
+            <param name="remotePath">The path of the remote file. This cannot be a directory.</param>
+            <returns>A <see cref="T:System.DateTime"/> value set to date and time that the specified file was modified.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.PutFile(System.IO.Stream,System.String)">
+            <summary>
+            Uploads the content of the data stream to the file on the server, overriding it if it already exists.
+            </summary>
+            <param name="sourceStream">The source data stream.</param>
+            <param name="remotePath">The path of the remote file. This cannot be a directory.</param>
+            <returns>Number of bytes transfered.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.PutFile(System.String,System.String)">
+            <summary>
+            Uploads the content of the local file to the file on the server, overriding it if it already exists.
+            </summary>
+            <param name="localPath">The path of the local file.</param>
+            <param name="remotePath">The path of the remote file. This cannot be a directory.</param>
+            <returns>Number of bytes transfered.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.PutFile(System.IO.Stream,System.String,System.Int64,System.Int64)">
+            <summary>
+            Uploads the content of the data stream to the specified offset of the file on the server.
+            </summary>
+            <param name="sourceStream">The source data stream.</param>
+            <param name="remotePath">The path of the remote file. This cannot be a directory.</param>
+            <param name="remoteOffset">The starting offset of the remote file.</param>
+            <param name="length">Number of bytes to transfer or -1 to transfer all data until an end is reached.</param>
+            <returns>Number of bytes transfered.</returns>
+            <remarks>If the remote file does not exist, it is created.</remarks>
+        </member>
+        <member name="M:Rebex.Net.Sftp.PutFile(System.String,System.String,System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Uploads the specified part of the local file to the specified offset of the file on the server.
+            </summary>
+            <param name="localPath">The path of the local file.</param>
+            <param name="remotePath">The path of the remote file. This cannot be a directory.</param>
+            <param name="localOffset">The starting offset in the local file.</param>
+            <param name="remoteOffset">The starting offset of the remote file.</param>
+            <param name="length">Number of bytes to transfer or -1 to transfer all data until an end is reached.</param>
+            <returns>Number of bytes transfered.</returns>
+            <remarks>If the remote file does not exist, it is created.</remarks>
+        </member>
+        <member name="M:Rebex.Net.Sftp.GetFile(System.String,System.IO.Stream)">
+            <summary>
+            Downloads the remote file to the data stream.
+            </summary>
+            <param name="remotePath">The path of the remote file.</param>
+            <param name="outputStream">The output stream.</param>
+            <returns>Number of bytes transfered.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.GetFile(System.String,System.String)">
+            <summary>
+            Downloads the remote file to the local file, overriding it if it already exists.
+            </summary>
+            <param name="remotePath">The path of the remote file.</param>
+            <param name="localPath">The path of the local file. This cannot be a directory.</param>
+            <returns>Number of bytes transfered.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.GetFile(System.String,System.IO.Stream,System.Int64,System.Int64)">
+            <summary>
+            Downloads the specified part of the remote file to the data stream.
+            </summary>
+            <param name="remotePath">The path of the remote file.</param>
+            <param name="outputStream">The output stream.</param>
+            <param name="remoteOffset">The starting offset of the remote file.</param>
+            <param name="length">Number of bytes to transfer or -1 to transfer all data until an end is reached.</param>
+            <returns>Number of bytes transfered.</returns>
+            <remarks>If the local file does not exist, it is created.</remarks>
+        </member>
+        <member name="M:Rebex.Net.Sftp.GetFile(System.String,System.String,System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Downloads the specified part of the remote file to the specified offset of the local file.
+            </summary>
+            <param name="remotePath">The path of the remote file.</param>
+            <param name="localPath">The path of the local file. This cannot be a directory.</param>
+            <param name="remoteOffset">The starting offset of the remote file.</param>
+            <param name="localOffset">The starting offset in the local file.</param>
+            <param name="length">Number of bytes to transfer or -1 to transfer until the end is reached.</param>
+            <returns>Number of bytes transfered.</returns>
+            <remarks>If the local file does not exist, it is created.</remarks>
+        </member>
+        <member name="M:Rebex.Net.Sftp.GetList">
+            <summary>
+            Retrieves the list of files and directories in the current remote directory.
+            </summary>
+            <returns>Collection of <see cref="T:Rebex.Net.SftpItem"/> values.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.GetList(System.String)">
+            <summary>
+            Retrieves the list of files and directories in the specified remote directory.
+            </summary>
+            <param name="path">The path of the remote directory, or null for current directory.</param>
+            <returns>Collection of <see cref="T:Rebex.Net.SftpItem"/> values.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.GetRawList">
+            <summary>
+            Retrieves the list of files and directories in the current remote directory using a raw text format.
+            </summary>
+            <returns>An array of lines, with each line representing a single item.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.GetRawList(System.String)">
+            <summary>
+            Retrieves the list of files and directories in the specified remote directory using a raw text format.
+            </summary>
+            <param name="path">The path of the remote directory, or null for current directory.</param>
+            <returns>An array of lines, with each line representing a single item.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.GetNameList">
+            <summary>
+            Retrieves the list of file and directory names in the current remote directory.
+            </summary>
+            <returns>An array of lines, with each line representing a single name.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.GetNameList(System.String)">
+            <summary>
+            Retrieves the list of file and directory names in the specified remote directory.
+            </summary>
+            <param name="path">The path of the remote directory, or null for current directory.</param>
+            <returns>An array of lines, with each line representing a single name.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.FileExists(System.String)">
+            <summary>
+            Detects whether the specified file exists on the server.
+            </summary>
+            <param name="remotePath">The path of the remote file to check.</param>
+            <returns>True if the file exists, false otherwise.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.DirectoryExists(System.String)">
+            <summary>
+            Detects whether the specified directory exists on the server.
+            </summary>
+            <param name="remotePath">The path of the remote directory to check.</param>
+            <returns>True if the directory exists, false otherwise.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginDisconnect(System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous Disconnect operation.
+            Informs the server that the connection is about to close and
+            terminates the connection.
+            </summary>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.EndDisconnect(System.IAsyncResult)">
+            <summary>
+            Ends a pending asynchronous Disconnect operation.
+            </summary>
+            <param name="asyncResult">Stores state information for this asynchronous operation as well as any user defined data.</param>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginRename(System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous Rename operation.
+            Renames a file or directory on the server.
+            </summary>
+            <param name="fromPath">The pathname of the remote file to be renamed.</param>
+            <param name="toPath">The pathname to rename the file to.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.EndRename(System.IAsyncResult)">
+            <summary>
+            Ends a pending asynchronous Rename operation.
+            </summary>
+            <param name="asyncResult">Stores state information for this asynchronous operation as well as any user defined data.</param>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginGetRawList(System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous GetRawList operation.
+            Retrieves the list of files and directories in the specified remote directory using a raw text format.
+            </summary>
+            <param name="path">The path of the remote directory, or null for current directory.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.EndGetRawList(System.IAsyncResult)">
+            <summary>
+            Ends a pending asynchronous GetRawList operation.
+            </summary>
+            <param name="asyncResult">Stores state information for this asynchronous operation as well as any user defined data.</param>
+            <returns>An array of lines, with each line representing a single item.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginGetList(System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous GetList operation.
+            Retrieves the list of files and directories in the specified remote directory.
+            </summary>
+            <param name="path">The path of the remote directory, or null for current directory.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.EndGetList(System.IAsyncResult)">
+            <summary>
+            Ends a pending asynchronous GetList operation.
+            </summary>
+            <param name="asyncResult">Stores state information for this asynchronous operation as well as any user defined data.</param>
+            <returns>Collection of <see cref="T:Rebex.Net.SftpItem"/> values.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginGetNameList(System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous GetNameList operation.
+            Retrieves the list of file and directory names in the specified remote directory.
+            </summary>
+            <param name="path">The path of the remote directory, or null for current directory.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.EndGetNameList(System.IAsyncResult)">
+            <summary>
+            Ends a pending asynchronous GetNameList operation.
+            </summary>
+            <param name="asyncResult">Stores state information for this asynchronous operation as well as any user defined data.</param>
+            <returns>An array of lines, with each line representing a single name.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginLogin(System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous Login operation.
+            Authenticates the user to the server and initializes the SFTP session.
+            </summary>
+            <param name="userName">The username.</param>
+            <param name="password">Password for the specified username.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginLogin(System.String,Rebex.Net.SshPrivateKey,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous Login operation.
+            Authenticates the user to the server using his private key and initializes the SFTP session.
+            </summary>
+            <param name="userName">The username.</param>
+            <param name="privateKey">RSA or DSA private key for key-based authentication.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginLogin(System.String,System.String,Rebex.Net.SshPrivateKey,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous Login operation.
+            Authenticates the user to the server using a combination of password and public key and initializes the SFTP session.
+            </summary>
+            <param name="userName">The username.</param>
+            <param name="password">Password for the specified username.</param>
+            <param name="privateKey">RSA or DSA private key for key-based authentication.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+            <remarks>This method is supported by GlobalScape SFTP server.</remarks>
+        </member>
+        <member name="M:Rebex.Net.Sftp.EndLogin(System.IAsyncResult)">
+            <summary>
+            Ends a pending asynchronous Login operation.
+            </summary>
+            <param name="asyncResult">Stores state information for this asynchronous operation as well as any user defined data.</param>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginConnect(System.String,System.Int32,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous Connect operation.
+            Connects to the SFTP server.
+            </summary>
+            <param name="serverName">The server address - either a hostname or a dotted string address.</param>
+            <param name="serverPort">The server port (eg. 22).</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginConnect(System.String,System.Int32,Rebex.Net.SshParameters,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous Connect operation.
+            Connects to the SFTP server with the specified security parameters.
+            </summary>
+            <param name="serverName">The server address - either a hostname or a dotted string address.</param>
+            <param name="serverPort">The server port (eg. 22).</param>
+            <param name="parameters">Security parameters</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.EndConnect(System.IAsyncResult)">
+            <summary>
+            Ends a pending asynchronous Connect operation.
+            </summary>
+            <param name="asyncResult">Stores state information for this asynchronous operation as well as any user defined data.</param>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginDeleteFile(System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous DeleteFile operation.
+            Deletes a file on the server.
+            </summary>
+            <param name="remotePath">The path to the file to be deleted.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.EndDeleteFile(System.IAsyncResult)">
+            <summary>
+            Ends a pending asynchronous DeleteFile operation.
+            </summary>
+            <param name="asyncResult">Stores state information for this asynchronous operation as well as any user defined data.</param>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginChangeDirectory(System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous ChangeDirectory operation.
+            Changes the current working directory on the server.
+            </summary>
+            <param name="remotePath">Path of the directory to change to.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.EndChangeDirectory(System.IAsyncResult)">
+            <summary>
+            Ends a pending asynchronous ChangeDirectory operation.
+            </summary>
+            <param name="asyncResult">Stores state information for this asynchronous operation as well as any user defined data.</param>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginCreateDirectory(System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous CreateDirectory operation.
+            Creates a directory on the server.
+            </summary>
+            <param name="remotePath">Pathname of the new remote directory.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.EndCreateDirectory(System.IAsyncResult)">
+            <summary>
+            Ends a pending asynchronous CreateDirectory operation.
+            </summary>
+            <param name="asyncResult">Stores state information for this asynchronous operation as well as any user defined data.</param>
+            <returns>A string containing the absolute path of the newly created remote directory.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginRemoveDirectory(System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous RemoveDirectory operation.
+            Deletes an empty remote directory with the specified pathname.
+            </summary>
+            <param name="remotePath">Remote directory pathname.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.EndRemoveDirectory(System.IAsyncResult)">
+            <summary>
+            Ends a pending asynchronous RemoveDirectory operation.
+            </summary>
+            <param name="asyncResult">Stores state information for this asynchronous operation as well as any user defined data.</param>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginGetFileLength(System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous GetFileLength operation.
+            Retrieves the size of the specified remote file.
+            </summary>
+            <param name="remotePath">The path of the remote file. This cannot be a directory.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.EndGetFileLength(System.IAsyncResult)">
+            <summary>
+            Ends a pending asynchronous GetFileLength operation.
+            </summary>
+            <param name="asyncResult">Stores state information for this asynchronous operation as well as any user defined data.</param>
+            <returns>The size of the specified file in bytes.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginGetFileDateTime(System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous GetFileDateTime operation.
+            Retrieves the modification date and time of the specified remote file.
+            </summary>
+            <param name="remotePath">The path of the remote file. This cannot be a directory.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.EndGetFileDateTime(System.IAsyncResult)">
+            <summary>
+            Ends a pending asynchronous GetFileDateTime operation.
+            </summary>
+            <param name="asyncResult">Stores state information for this asynchronous operation as well as any user defined data.</param>
+            <returns>A <see cref="T:System.DateTime"/> value set to date and time that the specified file was modified.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginPutFile(System.IO.Stream,System.String,System.Int64,System.Int64,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous PutFile operation.
+            Uploads the content of the data stream to the specified offset of the file on the server.
+            </summary>
+            <param name="sourceStream">The source data stream.</param>
+            <param name="remotePath">The path of the remote file. This cannot be a directory.</param>
+            <param name="remoteOffset">The starting offset of the remote file.</param>
+            <param name="length">Number of bytes to transfer or -1 to transfer all data until an end is reached.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+            <remarks>If the remote file does not exist, it is created.</remarks>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginPutFile(System.String,System.String,System.Int64,System.Int64,System.Int64,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous PutFile operation.
+            Uploads the specified part of the local file to the specified offset of the file on the server.
+            </summary>
+            <param name="localPath">The path of the local file.</param>
+            <param name="remotePath">The path of the remote file. This cannot be a directory.</param>
+            <param name="localOffset">The starting offset in the local file.</param>
+            <param name="remoteOffset">The starting offset of the remote file.</param>
+            <param name="length">Number of bytes to transfer or -1 to transfer all data until an end is reached.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+            <remarks>If the remote file does not exist, it is created.</remarks>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginPutFile(System.IO.Stream,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous PutFile operation.
+            Uploads the content of the data stream to the file on the server, overriding it if it already exists.
+            </summary>
+            <param name="sourceStream">The source data stream.</param>
+            <param name="remotePath">The path of the remote file. This cannot be a directory.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginPutFile(System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous PutFile operation.
+            Uploads the content of the local file to the file on the server, overriding it if it already exists.
+            </summary>
+            <param name="localPath">The path of the local file.</param>
+            <param name="remotePath">The path of the remote file. This cannot be a directory.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.EndPutFile(System.IAsyncResult)">
+            <summary>
+            Ends a pending asynchronous PutFile operation.
+            </summary>
+            <param name="asyncResult">Stores state information for this asynchronous operation as well as any user defined data.</param>
+            <returns>Number of bytes transfered.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginGetFile(System.String,System.IO.Stream,System.Int64,System.Int64,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous GetFile operation.
+            Downloads the specified part of the remote file to the data stream.
+            </summary>
+            <param name="remotePath">The path of the remote file.</param>
+            <param name="outputStream">The output stream.</param>
+            <param name="remoteOffset">The starting offset of the remote file.</param>
+            <param name="length">Number of bytes to transfer or -1 to transfer all data until an end is reached.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+            <remarks>If the local file does not exist, it is created.</remarks>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginGetFile(System.String,System.String,System.Int64,System.Int64,System.Int64,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous GetFile operation.
+            Downloads the specified part of the remote file to the specified offset of the local file.
+            </summary>
+            <param name="remotePath">The path of the remote file.</param>
+            <param name="localPath">The path of the local file. This cannot be a directory.</param>
+            <param name="remoteOffset">The starting offset of the remote file.</param>
+            <param name="localOffset">The starting offset in the local file.</param>
+            <param name="length">Number of bytes to transfer or -1 to transfer until the end is reached.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+            <remarks>If the local file does not exist, it is created.</remarks>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginGetFile(System.String,System.IO.Stream,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous GetFile operation.
+            Downloads the remote file to the data stream.
+            </summary>
+            <param name="remotePath">The path of the remote file.</param>
+            <param name="outputStream">The output stream.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginGetFile(System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous GetFile operation.
+            Downloads the remote file to the local file, overriding it if it already exists.
+            </summary>
+            <param name="remotePath">The path of the remote file.</param>
+            <param name="localPath">The path of the local file. This cannot be a directory.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.EndGetFile(System.IAsyncResult)">
+            <summary>
+            Ends a pending asynchronous GetFile operation.
+            </summary>
+            <param name="asyncResult">Stores state information for this asynchronous operation as well as any user defined data.</param>
+            <returns>Number of bytes transfered.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginResolveSymlink(System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous ResolveSymlink operation.
+            Resolves the symlink and returns the real path.
+            </summary>
+            <param name="remotePath">The symlink path.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.EndResolveSymlink(System.IAsyncResult)">
+            <summary>
+            Ends a pending asynchronous GetInfo operation.
+            </summary>
+            <param name="asyncResult">Stores state information for this asynchronous operation as well as any user defined data.</param>
+            <returns>Real path.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginGetInfo(System.String,System.Boolean,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous GetInfo operation.
+            Retrieves a <see cref="T:Rebex.Net.SftpItem"/> containing the information about the specified remote file or directory.
+            </summary>
+            <param name="remotePath">The path of the remote file or directory.</param>
+            <param name="failIfNotFound">Specifies whether to throw an exception if file not found.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.EndGetInfo(System.IAsyncResult)">
+            <summary>
+            Ends a pending asynchronous GetInfo operation.
+            </summary>
+            <param name="asyncResult">Stores state information for this asynchronous operation as well as any user defined data.</param>
+            <returns>Information about the remote file or directory.</returns>
+            <remarks>Returns null if no file is found and failIfNotFound argument is set to false.</remarks>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginSetAttributes(System.String,Rebex.Net.SftpAttributes,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous SetAttributes operation.
+            Sets the attributes of the remote file.
+            </summary>
+            <param name="remotePath">The path of the remote file or directory.</param>
+            <param name="attributes">Attributes to set.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.EndSetAttributes(System.IAsyncResult)">
+            <summary>
+            Ends a pending asynchronous SetAttributes operation.
+            </summary>
+            <param name="asyncResult">Stores state information for this asynchronous operation as well as any user defined data.</param>		
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginDirectoryExists(System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous DirectoryExists operation.
+            Detects whether the specified directory exists on the server.
+            </summary>
+            <param name="remotePath">The path of the remote directory to check.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.EndDirectoryExists(System.IAsyncResult)">
+            <summary>
+            Ends a pending asynchronous DirectoryExists operation.
+            </summary>
+            <returns>True if the directory exists, false otherwise.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginFileExists(System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous FileExists operation.
+            Detects whether the specified file exists on the server.
+            </summary>
+            <param name="remotePath">The path of the remote file to check.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.EndFileExists(System.IAsyncResult)">
+            <summary>
+            Ends a pending asynchronous FileExists operation.
+            </summary>
+            <returns>True if the file exists, false otherwise.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.BeginSetFileDateTime(System.String,System.DateTime,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous SetFileDateTime operation.
+            Sets the modification date and time of the specified remote file.
+            </summary>
+            <param name="remotePath">The path of the remote file.</param>
+            <param name="newDateTime">The date and time to set.</param>
+            <param name="callback">An optional asynchronous callback to be called when the operation is complete.</param>
+            <param name="state">A user-provided object that identifies this particular asynchronous operation.</param>
+            <returns>An <see cref="T:System.IAsyncResult"/> that references the asynchronous operation.</returns>
+        </member>
+        <member name="M:Rebex.Net.Sftp.EndSetFileDateTime(System.IAsyncResult)">
+            <summary>
+            Ends a pending asynchronous SetFileDateTime operation.
+            </summary>
+            <param name="asyncResult">Stores state information for this asynchronous operation as well as any user defined data.</param>		
+        </member>
+        <member name="E:Rebex.Net.Sftp.ResponseRead">
+            <summary>
+            Occurs when a response is received from the server.
+            </summary>
+        </member>
+        <member name="E:Rebex.Net.Sftp.CommandSent">
+            <summary>
+            Occurs when a command is send to the server.
+            </summary>
+        </member>
+        <member name="E:Rebex.Net.Sftp.StateChanged">
+            <summary>
+            Occurs when the state of the <see cref="T:Rebex.Net.Sftp"/> object is changed.
+            </summary>
+        </member>
+        <member name="E:Rebex.Net.Sftp.TransferProgress">
+            <summary>
+            Occurs when data is send or received.
+            </summary>
+        </member>
+        <member name="E:Rebex.Net.Sftp.ListItemReceived">
+            <summary>
+            Occurs when a file and directory listing item is received by the <see cref="M:Rebex.Net.Sftp.GetList"/>, <see cref="M:Rebex.Net.Sftp.GetRawList"/> or <see cref="M:Rebex.Net.Sftp.GetNameList"/> methods.
+            </summary>
+        </member>
+        <member name="P:Rebex.Net.Sftp.Proxy">
+            <summary>
+            Gets or sets the network proxy to use to access a remote server.
+            </summary>
+            <value>The <see cref="P:Rebex.Net.Sftp.Proxy"/> to use to access a remote server.</value>
+        </member>
+        <member name="P:Rebex.Net.Sftp.Encoding">
+            <summary>
+            Gets or sets the <see cref="T:System.Text.Encoding">Encoding</see> to use to encode and decode command parameters and server responses.
+            </summary>
+            <value>The <see cref="T:System.Text.Encoding">Encoding</see> to use to encode and decode command parameters and server responses. Default is <see cref="T:System.Text.Encoding">Encoding.Default</see>.</value>
+            <remarks>
+            Even though the RFC implies that UTF-8 is to be used to encode all communication, the practice is very different, unfortunately.
+            In the real world, all SFTP servers seem to default to the OS default charset.
+            </remarks>
+        </member>
+        <member name="P:Rebex.Net.Sftp.Timeout">
+            <summary>
+            Gets or sets the length of time before the operation times out.
+            </summary>
+            <value>
+            The length of time, in milliseconds, until the operation times out,
+            or the value -1 or 0 to indicate that the request does not time out.
+            Default is 60000 (60 seconds).
+            </value>
+            <remarks>
+            <p>
+            The internal timeout counter is reset every time data is sent
+            or received from to server. This also means that data transfers only
+            time out after x miliseconds of inactivity, not after x miliseconds
+            from the start of the transfer.
+            </p>
+            <p>
+            Minimal value is 1000. Setting this to a value lower than 1000 will set it to 1000.
+            </p>
+            </remarks>
+        </member>
+        <member name="P:Rebex.Net.Sftp.State">
+            <summary>
+            Gets the current state of the <see cref="T:Rebex.Net.Sftp"/> object.
+            </summary>
+            <value>The current state.</value>
+        </member>
+        <member name="P:Rebex.Net.Sftp.Fingerprint">
+            <summary>
+            Gets the server public key fingerprint.
+            </summary>
+            <value>Server fingerprint.</value>
+        </member>
+        <member name="P:Rebex.Net.Sftp.Session">
+            <summary>
+            Gets the SSH session used by this SFTP session.
+            </summary>
+            <value>SSH session.</value>
+        </member>
+        <member name="P:Rebex.Net.Sftp.LocalEndPoint">
+            <summary>
+            Gets the local client <see cref="T:System.Net.EndPoint"/>.
+            </summary>
+            <value>The local client <see cref="T:System.Net.EndPoint"/>.</value>
+        </member>
+        <member name="P:Rebex.Net.Sftp.RemoteEndPoint">
+            <summary>
+            Gets the remote server <see cref="T:System.Net.EndPoint"/>.
+            </summary>
+            <value>The remote server <see cref="T:System.Net.EndPoint"/>.</value>
+        </member>
+        <member name="P:Rebex.Net.Sftp.Version">
+            <summary>
+            Gets the version of the SFTP component.
+            </summary>
+            <value>The version of the SFTP component.</value>
+        </member>
+        <member name="T:Rebex.Net.SftpResponseReadEventHandler">
+            <summary>
+            Represents the method that will handle the <see cref="E:Rebex.Net.Sftp.ResponseRead">ResponseRead</see> event of a <see cref="T:Rebex.Net.Sftp"/> class.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A <see cref="T:Rebex.Net.SftpResponseReadEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="T:Rebex.Net.SftpCommandSentEventHandler">
+            <summary>
+            Represents the method that will handle the <see cref="E:Rebex.Net.Sftp.CommandSent">CommandSent</see> event of a <see cref="T:Rebex.Net.Sftp"/> class.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A <see cref="T:Rebex.Net.SftpCommandSentEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="T:Rebex.Net.SftpStateChangedEventHandler">
+            <summary>
+            Represents the method that will handle the <see cref="E:Rebex.Net.Sftp.StateChanged">StateChanged</see> event of a <see cref="T:Rebex.Net.Sftp"/> class.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A <see cref="T:Rebex.Net.SftpStateChangedEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="T:Rebex.Net.SftpTransferProgressEventHandler">
+            <summary>
+            Represents the method that will handle the <see cref="E:Rebex.Net.Sftp.TransferProgress">TransferProgress</see> event of a <see cref="T:Rebex.Net.Sftp"/> class.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A <see cref="T:Rebex.Net.SftpTransferProgressEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="T:Rebex.Net.SftpListItemReceivedEventHandler">
+            <summary>
+            Represents the method that will handle the <see cref="E:Rebex.Net.Sftp.ListItemReceived">ListItemReceived</see> event of a <see cref="T:Rebex.Net.Sftp"/> class.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A <see cref="T:Rebex.Net.SftpListItemReceivedEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="T:Rebex.Net.SftpResponseReadEventArgs">
+            <summary>
+            Provides data for the <see cref="E:Rebex.Net.Sftp.ResponseRead">ResponseRead</see> event.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.SftpResponseReadEventArgs.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rebex.Net.SftpResponseReadEventArgs"/> class with the specified response string.
+            </summary>
+            <param name="response">The raw response line that was read.</param>
+        </member>
+        <member name="P:Rebex.Net.SftpResponseReadEventArgs.Response">
+            <summary>
+            Gets the SFTP response.
+            </summary>
+            <value>The SFTP response.</value>
+        </member>
+        <member name="T:Rebex.Net.SftpCommandSentEventArgs">
+            <summary>
+            Provides data for the <see cref="E:Rebex.Net.Sftp.CommandSent">CommandSent</see> event.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.SftpCommandSentEventArgs.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rebex.Net.SftpCommandSentEventArgs"/> class with the specified command string.
+            </summary>
+            <param name="command">The command that was sent.</param>
+        </member>
+        <member name="P:Rebex.Net.SftpCommandSentEventArgs.Command">
+            <summary>
+            Gets the command string.
+            </summary>
+            <value>The command string.</value>
+        </member>
+        <member name="T:Rebex.Net.SftpStateChangedEventArgs">
+            <summary>
+            Provides data for the <see cref="E:Rebex.Net.Sftp.StateChanged">StateChanged</see> event.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.SftpStateChangedEventArgs.#ctor(Rebex.Net.SftpState,Rebex.Net.SftpState)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rebex.Net.SftpStateChangedEventArgs"/> class with the specified old state and new state.
+            </summary>
+            <param name="oldState">The old state.</param>
+            <param name="newState">The new state.</param>
+        </member>
+        <member name="P:Rebex.Net.SftpStateChangedEventArgs.OldState">
+            <summary>
+            Gets the old state.
+            </summary>
+            <value>The state that was changed.</value>
+        </member>
+        <member name="P:Rebex.Net.SftpStateChangedEventArgs.NewState">
+            <summary>
+            Gets the new state.
+            </summary>
+            <value>The new and current state.</value>
+        </member>
+        <member name="T:Rebex.Net.SftpTransferProgressEventArgs">
+            <summary>
+            Provides data for the <see cref="E:Rebex.Net.Sftp.TransferProgress">TransferProgress</see> event.
+            </summary>
+        </member>
+        <member name="P:Rebex.Net.SftpTransferProgressEventArgs.Id">
+            <summary>
+            Gets the user-defined state object specified in a call to Begin... method.
+            </summary>
+        </member>
+        <member name="P:Rebex.Net.SftpTransferProgressEventArgs.State">
+            <summary>
+            Gets the transfer state.
+            </summary>
+            <value>The transfer state.</value>
+        </member>
+        <member name="P:Rebex.Net.SftpTransferProgressEventArgs.Finished">
+            <summary>
+            Gets the value indicating whether the transfer has finished.
+            </summary>
+            <value>True if finished; false otherwise.</value>
+        </member>
+        <member name="P:Rebex.Net.SftpTransferProgressEventArgs.BytesTransferred">
+            <summary>
+            Gets the total number of bytes transferred during the current transfer.
+            </summary>
+            <value>The number of bytes transferred.</value>
+            <remarks>This value is valid only when <see cref="P:Rebex.Net.SftpTransferProgressEventArgs.State"/> is not <see cref="P:Rebex.Net.SftpTransferProgressEventArgs.State">None</see>.</remarks>
+        </member>
+        <member name="P:Rebex.Net.SftpTransferProgressEventArgs.BytesSinceLastEvent">
+            <summary>
+            Gets the number of bytes transferred during the current transfer since the last time the event was raised.
+            </summary>
+            <value>The number of bytes transferred since the last time the event was raised.</value>
+            <remarks>This value is valid only when <see cref="P:Rebex.Net.SftpTransferProgressEventArgs.State"/> is not <see cref="P:Rebex.Net.SftpTransferProgressEventArgs.State">None</see>.</remarks>
+        </member>
+        <member name="T:Rebex.Net.SftpListItemReceivedEventArgs">
+            <summary>
+            Provides data for the <see cref="E:Rebex.Net.Sftp.ListItemReceived">ListItemReceived</see> event.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.SftpListItemReceivedEventArgs.Ignore">
+            <summary>
+            Ignores the current item, making it not appear in the list.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.SftpListItemReceivedEventArgs.Abort">
+            <summary>
+            Aborts the process of receving the file and directory listing.
+            </summary>
+            <remarks>Calling <see cref="M:Rebex.Net.SftpListItemReceivedEventArgs.Abort"/> will not ignore the last recieved item.
+            You have to call <see cref="M:Rebex.Net.SftpListItemReceivedEventArgs.Ignore"/> prior to calling <see cref="M:Rebex.Net.SftpListItemReceivedEventArgs.Abort"/>
+            if you don't want to have the last recieved item in your list.</remarks>
+        </member>
+        <member name="M:Rebex.Net.SftpListItemReceivedEventArgs.#ctor(System.String,Rebex.Net.SftpItem)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rebex.Net.SftpListItemReceivedEventArgs"/> class with the specified raw data and item.
+            </summary>
+            <param name="rawLine">Raw data of the received item line.</param>
+            <param name="item">Received <see cref="T:Rebex.Net.SftpItem"/>.</param>
+        </member>
+        <member name="P:Rebex.Net.SftpListItemReceivedEventArgs.RawLine">
+            <summary>
+            Gets the raw data of the received item line.
+            </summary>
+            <value>The raw data of the received item line.</value>
+        </member>
+        <member name="P:Rebex.Net.SftpListItemReceivedEventArgs.Item">
+            <summary>
+            Gets or sets the received <see cref="T:Rebex.Net.SftpItem"/>.
+            </summary>
+            <value>The received <see cref="T:Rebex.Net.SftpItem"/> or <b>null</b> if not available.</value>
+            <remarks>To remove this item from the list, set this property to null.</remarks>
+        </member>
+        <member name="T:Rebex.Net.SftpExceptionStatus">
+            <summary>
+            Defines status codes for the <see cref="T:Rebex.Net.SftpException"/> class.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SftpExceptionStatus.ConnectFailure">
+            <summary>
+            The remote service point could not be contacted at the transport level.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SftpExceptionStatus.ConnectionClosed">
+            <summary>
+            The connection was prematurely closed.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SftpExceptionStatus.SocketError">
+            <summary>
+            The error at transport level occured.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SftpExceptionStatus.NameResolutionFailure">
+            <summary>
+            The name resolver service could not resolve the host name.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SftpExceptionStatus.ProtocolError">
+            <summary>
+            The response received from the server was complete but indicated a protocol-level error. For example, an SFTP protocol error 'File not found' would use this status.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SftpExceptionStatus.ProxyNameResolutionFailure">
+            <summary>
+            The name resolver service could not resolve the proxy host name.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SftpExceptionStatus.OperationAborted">
+            <summary>
+            The operation was aborted by a call to the <see cref="M:Rebex.Net.Sftp.AbortTransfer"/> method.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SftpExceptionStatus.UnclassifiableError">
+            <summary>
+            An unclassifiable error occurred. This is the default value for <see cref="P:Rebex.Net.SftpException.Status"/>.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SftpExceptionStatus.ServerProtocolViolation">
+            <summary>
+            The server response was not a valid SFTP response.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SftpExceptionStatus.Timeout">
+            <summary>
+            No response was received during the time-out period for a request.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SftpExceptionStatus.AsyncError">
+            <summary>
+            General exception in asynchronous call.
+            </summary>
+        </member>
+        <member name="T:Rebex.Net.SftpException">
+            <summary>
+            The exception that is thrown when an error occurs while using Sftp component.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.SftpException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rebex.Net.SftpException"/> class with serialized data.
+            </summary>
+            <param name="info">The object that holds the serialized object data.</param>
+            <param name="context">The contextual information about the source or destination.</param>
+        </member>
+        <member name="M:Rebex.Net.SftpException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Sets the <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with information about the <see cref="T:Rebex.Net.SftpException"/>.
+            </summary>
+            <param name="info">The object that holds the serialized object data.</param>
+            <param name="context">The contextual information about the source or destination.</param>
+        </member>
+        <member name="M:Rebex.Net.SftpException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rebex.Net.SftpException"/> class.
+            </summary>
+            <remarks>This constructor initializes the <see cref="P:System.Exception.Message">Message</see> property of the new instance to a message that describes the general error.</remarks>
+        </member>
+        <member name="M:Rebex.Net.SftpException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rebex.Net.SftpException"/> class with the specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:Rebex.Net.SftpException.#ctor(System.String,Rebex.Net.SftpExceptionStatus)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rebex.Net.SftpException"/> class with the specified error message and status.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+            <param name="status">One of the <see cref="T:Rebex.Net.SftpExceptionStatus"/> values.</param>
+        </member>
+        <member name="M:Rebex.Net.SftpException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rebex.Net.SftpException"/> class with the specified error message
+            and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+            <param name="innerException">The exception that is the cause of the current exception. If the <i>innerException</i> parameter is not a null reference, the current exception is raised in a <b>catch</b> block that handles the inner exception.</param>
+        </member>
+        <member name="M:Rebex.Net.SftpException.#ctor(System.String,System.Exception,Rebex.Net.SftpExceptionStatus)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rebex.Net.SftpException"/> class with the specified error message, status,
+            and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+            <param name="innerException">The exception that is the cause of the current exception. If the <i>innerException</i> parameter is not a null reference, the current exception is raised in a <b>catch</b> block that handles the inner exception.</param>
+            <param name="status">One of the <see cref="T:Rebex.Net.SftpExceptionStatus"/> values.</param>
+        </member>
+        <member name="P:Rebex.Net.SftpException.Status">
+            <summary>
+            Gets the status of the response.
+            </summary>
+            <value>One of the <see cref="T:Rebex.Net.SftpExceptionStatus"/> values.</value>
+        </member>
+        <member name="P:Rebex.Net.SftpException.Code">
+            <summary>
+            Gets the <see cref="T:Rebex.Net.SftpErrorCode"/> of the exception.
+            </summary>
+            <value>The <see cref="P:Rebex.Net.SftpException.Code"/> is only meaningful if <see cref="P:Rebex.Net.SftpException.Status"/> is <see cref="T:Rebex.Net.SftpExceptionStatus">ProtocolError</see>.</value>
+        </member>
+        <member name="P:Rebex.Net.SftpException.Transferred">
+            <summary>
+            Gets the amount od data transferred before the exception occured.
+            </summary>
+            <value>The amount od data transferred before the exception occured.</value>
+        </member>
+        <member name="T:Rebex.Net.SftpItemType">
+            <summary>
+            Type of <see cref="T:Rebex.Net.SftpItem"/>.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SftpItemType.Unknown">
+            <summary>
+            Unknown type.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SftpItemType.CharacterDevice">
+            <summary>Character device.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpItemType.Directory">
+            <summary>Directory.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpItemType.BlockDevice">
+            <summary>Block device.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpItemType.RegularFile">
+            <summary>Regular file.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpItemType.Symlink">
+            <summary>Symbolic link.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpItemType.Socket">
+            <summary>Socket.</summary>
+        </member>
+        <member name="T:Rebex.Net.SftpPermissions">
+            <summary>
+            SFTP/Unix file permissions.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SftpPermissions.OthersExecute">
+            <summary>Others execute.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpPermissions.OthersWrite">
+            <summary>Others write.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpPermissions.OthersRead">
+            <summary>Others read.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpPermissions.GroupExecute">
+            <summary>Group execute.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpPermissions.GroupWrite">
+            <summary>Group write.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpPermissions.GroupRead">
+            <summary>Group read.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpPermissions.OwnerExecute">
+            <summary>Owner execute.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpPermissions.OwnerWrite">
+            <summary>Owner write.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpPermissions.OwnerRead">
+            <summary>Owner read.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpPermissions.Sticky">
+            <summary>Sticky.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpPermissions.SetGid">
+            <summary>Set GID bit.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpPermissions.SetUid">
+            <summary>Set UID bit.</summary>
+        </member>
+        <member name="T:Rebex.Net.SftpAttributes">
+            <summary>
+            Encapsulates file or directory attributes such as user and group id, permissions and modify time.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.SftpAttributes.SetUserAndGroup(System.Int32,System.Int32)">
+            <summary>
+            Sets user and group IDs.
+            </summary>
+            <param name="userId">User ID.</param>
+            <param name="groupId">Group ID.</param>
+        </member>
+        <member name="M:Rebex.Net.SftpAttributes.#ctor">
+            <summary>
+            Creates an instance of <see cref="T:Rebex.Net.SftpAttributes"/> class.
+            </summary>
+        </member>
+        <member name="P:Rebex.Net.SftpAttributes.UserId">
+            <summary>
+            Gets the user ID.
+            </summary>
+            <value>User ID.</value>
+            <remarks>Use <see cref="M:Rebex.Net.SftpAttributes.SetUserAndGroup(System.Int32,System.Int32)"/> to set the user and group IDs.</remarks>
+        </member>
+        <member name="P:Rebex.Net.SftpAttributes.GroupId">
+            <summary>
+            Gets the group ID.
+            </summary>
+            <value>Group ID.</value>
+            <remarks>Use <see cref="M:Rebex.Net.SftpAttributes.SetUserAndGroup(System.Int32,System.Int32)"/> to set the user and group IDs.</remarks>
+        </member>
+        <member name="P:Rebex.Net.SftpAttributes.Permissions">
+            <summary>
+            Gets or sets the Unix/SFTP permissions.
+            </summary>
+            <value>Permissions.</value>
+        </member>
+        <member name="P:Rebex.Net.SftpAttributes.Modified">
+            <summary>
+            Gets or sets the <see cref="T:System.DateTime"/> of last modification.
+            </summary>
+            <value>The <see cref="T:System.DateTime"/> of last modification.</value>
+        </member>
+        <member name="T:Rebex.Net.SftpItem">
+            <summary>
+            Contains information about a single file or directory on the SFTP server.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.SftpItem.#ctor(System.String,System.Int64,Rebex.Net.SftpItemType,System.DateTime,System.DateTime)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rebex.Net.SftpItem"/> class.
+            </summary>
+            <param name="filename">The name of the file or directory.</param>
+            <param name="size">The size of the file.</param>
+            <param name="type">The type of item.</param>
+            <param name="accessed">The <see cref="T:System.DateTime"/> of last access.</param>
+            <param name="modified">The <see cref="T:System.DateTime"/> of last modification.</param>
+        </member>
+        <member name="M:Rebex.Net.SftpItem.ToString">
+            <summary>
+            Returns the name of the item.
+            </summary>
+            <returns>The name of the item.</returns>
+        </member>
+        <member name="P:Rebex.Net.SftpItem.Name">
+            <summary>
+            Gets the name of the file or directory.
+            </summary>
+            <value>The name of the file or directory.</value>
+        </member>
+        <member name="P:Rebex.Net.SftpItem.Size">
+            <summary>
+            Gets the size of the file.
+            </summary>
+            <value>The size of the file.</value>
+        </member>
+        <member name="P:Rebex.Net.SftpItem.UserId">
+            <summary>
+            Gets the user ID of the file.
+            </summary>
+            <value>User ID.</value>
+        </member>
+        <member name="P:Rebex.Net.SftpItem.GroupId">
+            <summary>
+            Gets the group ID of the file.
+            </summary>
+            <value>Group ID.</value>
+        </member>
+        <member name="P:Rebex.Net.SftpItem.Permissions">
+            <summary>
+            Gets the Unix/SFTP permissions.
+            </summary>
+            <value>Permissions.</value>
+        </member>
+        <member name="P:Rebex.Net.SftpItem.Accessed">
+            <summary>
+            Gets the <see cref="T:System.DateTime"/> of last access.
+            </summary>
+            <value>The <see cref="T:System.DateTime"/> of last access.</value>
+        </member>
+        <member name="P:Rebex.Net.SftpItem.Modified">
+            <summary>
+            Gets the <see cref="T:System.DateTime"/> of last modification.
+            </summary>
+            <value>The <see cref="T:System.DateTime"/> of last modification.</value>
+        </member>
+        <member name="P:Rebex.Net.SftpItem.Type">
+            <summary>
+            Gets the type of the item.
+            </summary>
+            <value>The type of the item.</value>
+        </member>
+        <member name="P:Rebex.Net.SftpItem.IsDirectory">
+            <summary>
+            Gets the flag indicating whether the item might be a directory.
+            </summary>
+            <value>True if the item might be a directory.</value>
+        </member>
+        <member name="P:Rebex.Net.SftpItem.IsFile">
+            <summary>
+            Gets the flag indicating whether the item might be a file.
+            </summary>
+            <value>True if the item might be a file.</value>
+        </member>
+        <member name="P:Rebex.Net.SftpItem.IsSymlink">
+            <summary>
+            Gets the flag indicating whether the item is a symlink.
+            </summary>
+            <value>True if the item is a symlink.</value>
+        </member>
+        <member name="T:Rebex.Net.SftpItemCollection">
+            <summary>
+            Provides a container for a collection of <see cref="T:Rebex.Net.SftpItem"/> objects.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.SftpItemCollection.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rebex.Net.SftpItemCollection"/> class.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.SftpItemCollection.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rebex.Net.SftpItemCollection"/> class with serialized data.
+            </summary>
+            <param name="info">The object that holds the serialized object data.</param>
+            <param name="context">The contextual information about the source or destination.</param>
+        </member>
+        <member name="M:Rebex.Net.SftpItemCollection.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Sets the <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with information about the <see cref="T:Rebex.Net.SftpItemCollection"/>.
+            </summary>
+            <param name="info">The object that holds the serialized object data.</param>
+            <param name="context">The contextual information about the source or destination.</param>
+        </member>
+        <member name="M:Rebex.Net.SftpItemCollection.Clone">
+            <summary>
+            Creates a shallow copy of the <see cref="T:Rebex.Net.SftpItemCollection"/>.
+            </summary>
+            <returns>A shallow copy of the <see cref="T:Rebex.Net.SftpItemCollection"/>.</returns>
+            <remarks>
+            A shallow copy of a collection copies only the elements
+            of the collection, whether they are reference types or value
+            types, but it does not copy the objects that the references
+            refer to. The references in the new collection point to the same
+            objects that the references in the original collection point to.
+            </remarks>
+        </member>
+        <member name="M:Rebex.Net.SftpItemCollection.GetEnumerator">
+            <summary>
+            Returns an enumerator that can iterate through the <see cref="T:Rebex.Net.SftpItemCollection"/>
+            </summary>
+            <returns>An <see cref="T:System.Collections.IEnumerator"/>.</returns>
+            <remarks>GetEnumerator is the method that implements the foreach statement (For Each in Visual Basic). You should not need to call this method directly.</remarks>
+        </member>
+        <member name="M:Rebex.Net.SftpItemCollection.GetEnumerator(System.Int32,System.Int32)">
+            <summary>
+            Returns an enumerator for a section of the <see cref="T:Rebex.Net.SftpItemCollection"/>.
+            </summary>
+            <param name="index">The zero-based starting index of the <see cref="T:Rebex.Net.SftpItemCollection"/> section that the enumerator should refer to.</param>
+            <param name="count">The number of elements in the <see cref="T:Rebex.Net.SftpItemCollection"/> section that the enumerator should refer to.</param>
+            <returns>An <see cref="T:System.Collections.IEnumerator"/> for the specified section of the ArrayList.</returns>
+            <remarks>Not supported by Rebex SFTP for .NET Compact Framework.</remarks>
+        </member>
+        <member name="M:Rebex.Net.SftpItemCollection.Add(Rebex.Net.SftpItem)">
+            <summary>
+            Adds the <see cref="T:Rebex.Net.SftpItem"/> to the <see cref="T:Rebex.Net.SftpItemCollection"/>.
+            </summary>
+            <param name="item">The <see cref="T:Rebex.Net.SftpItem"/> to be added to the <see cref="T:Rebex.Net.SftpItemCollection"/>.</param>
+        </member>
+        <member name="M:Rebex.Net.SftpItemCollection.Remove(Rebex.Net.SftpItem)">
+            <summary>
+            Removes the specified <see cref="T:Rebex.Net.SftpItem"/> from the <see cref="T:Rebex.Net.SftpItemCollection"/>.
+            </summary>
+            <param name="item">The <see cref="T:Rebex.Net.SftpItem"/> to remove from the <see cref="T:Rebex.Net.SftpItemCollection"/>.</param>
+        </member>
+        <member name="M:Rebex.Net.SftpItemCollection.Remove(System.String)">
+            <summary>
+            Removes the <see cref="T:Rebex.Net.SftpItem"/> with the specified name from the <see cref="T:Rebex.Net.SftpItemCollection"/>.
+            </summary>
+            <param name="name">The name of <see cref="T:Rebex.Net.SftpItem"/> to remove from the <see cref="T:Rebex.Net.SftpItemCollection"/>.</param>
+        </member>
+        <member name="M:Rebex.Net.SftpItemCollection.Remove(System.Int32)">
+            <summary>
+            Removes the <see cref="T:Rebex.Net.SftpItem"/> at the specified index from the <see cref="T:Rebex.Net.SftpItemCollection"/>.
+            </summary>
+            <param name="index">The zero-based index of the <see cref="T:Rebex.Net.SftpItem"/> to remove.</param>
+        </member>
+        <member name="M:Rebex.Net.SftpItemCollection.GetTotalSize">
+            <summary>
+            Gets the total size of files contained in the <see cref="T:Rebex.Net.SftpItemCollection"/>.
+            </summary>
+            <returns>The total size of files contained it the <see cref="T:Rebex.Net.SftpItemCollection"/>.</returns>
+        </member>
+        <member name="M:Rebex.Net.SftpItemCollection.GetFiles(System.Text.RegularExpressions.Regex)">
+            <summary>
+            Returns the names of files in the <see cref="T:Rebex.Net.SftpItemCollection"/> that match the specified search pattern.
+            </summary>
+            <param name="regExp">The regular expression to match the names against.</param>
+            <returns>A <see cref="T:System.String"/> array containing the names of files in the specified directory that match the specified search pattern.</returns>
+        </member>
+        <member name="M:Rebex.Net.SftpItemCollection.GetFiles(System.String,System.Boolean)">
+            <summary>
+            Returns the names of files in the <see cref="T:Rebex.Net.SftpItemCollection"/> that match the specified search pattern.
+            </summary>
+            <param name="searchPattern">The search string to match the items against.</param>
+            <param name="caseSensitive">If tree, perform unix-like case-sensitive matching.</param>
+            <returns>A <see cref="T:System.String"/> array containing the names of files in the specified directory that match the specified search pattern.</returns>
+            <remarks>
+            <p>The following wildcard specifiers are permitted in <i>searchPattern</i>:<br/>
+            <b>*</b> - Zero or more characters.<br/>
+            <b>?</b> - Exactly one character.<br/>
+            Characters other than the wild card specifiers represent themselves.
+            For example, the searchPattern string "*t" searches for all names in path
+            ending with the letter "t". The searchPattern string "s*" searches for all
+            names in path beginning with the letter "s".
+            </p>
+            </remarks>
+        </member>
+        <member name="M:Rebex.Net.SftpItemCollection.GetFiles(System.String)">
+            <summary>
+            Returns the names of files in the <see cref="T:Rebex.Net.SftpItemCollection"/> that match the specified search pattern.
+            </summary>
+            <param name="searchPattern">The search string to match the items against.</param>
+            <returns>A <see cref="T:System.String"/> array containing the names of files in the specified directory that match the specified search pattern.</returns>
+            <remarks>
+            <p>The following wildcard specifiers are permitted in <i>searchPattern</i>:<br/>
+            <b>*</b> - Zero or more characters.<br/>
+            <b>?</b> - Exactly one character.<br/>
+            Characters other than the wild card specifiers represent themselves.
+            For example, the searchPattern string "*t" searches for all names in path
+            ending with the letter "t". The searchPattern string "s*" searches for all
+            names in path beginning with the letter "s".
+            </p>
+            </remarks>
+        </member>
+        <member name="M:Rebex.Net.SftpItemCollection.Sort">
+            <summary>
+            Sorts the items in the entire <see cref="T:Rebex.Net.SftpItemCollection"/> alphabetically.
+            </summary>
+        </member>
+        <member name="M:Rebex.Net.SftpItemCollection.Sort(System.Collections.IComparer)">
+            <summary>
+            Sorts the elements in the entire <see cref="T:Rebex.Net.SftpItemCollection"/> using the specified comparer.
+            </summary>
+            <param name="comparer">The <see cref="T:System.Collections.IComparer"/> implementation to use when comparing elements, or a null reference to sort alphabetically</param>
+            <remarks>This method uses <see cref="M:System.Collections.ArrayList.Sort(System.Collections.IComparer)"/>, which uses QuickSort algorithm. See its description for more information.</remarks>
+        </member>
+        <member name="M:Rebex.Net.SftpItemCollection.Sort(System.Int32,System.Int32,System.Collections.IComparer)">
+            <summary>
+            Sorts the elements in a section of <see cref="T:Rebex.Net.SftpItemCollection"/> using the specified comparer.
+            </summary>
+            <param name="index">The zero-based starting index of the range to sort.</param>
+            <param name="count">The length of the range to sort.</param>
+            <param name="comparer">The <see cref="T:System.Collections.IComparer"/> implementation to use when comparing elements, or a null reference to sort alphabetically.</param>
+            <remarks>This method uses <see cref="M:System.Collections.ArrayList.Sort(System.Int32,System.Int32,System.Collections.IComparer)"/>, which uses QuickSort algorithm. See its description for more information.</remarks>
+        </member>
+        <member name="M:Rebex.Net.SftpItemCollection.CopyTo(System.Array,System.Int32)">
+            <summary>
+            Copies the range of elements from the <see cref="T:Rebex.Net.SftpItemCollection"/> to a compatible one-dimensional
+            <see cref="T:System.Array"/>, starting at the specified index of the target array.
+            </summary>
+            <param name="array">One-dimensional zero-based array that is the destination of the elements copied from <see cref="T:Rebex.Net.SftpItemCollection"/>.</param>
+            <param name="index">A zero-based index in the destination array at which copying begins.</param>
+        </member>
+        <member name="P:Rebex.Net.SftpItemCollection.SyncRoot">
+            <summary>
+            Gets an object that can be used to synchronize access to the <see cref="T:Rebex.Net.SftpItemCollection"/>.
+            </summary>
+            <value>An object that can be used to synchronize access to the <see cref="T:Rebex.Net.SftpItemCollection"/>.</value>
+        </member>
+        <member name="P:Rebex.Net.SftpItemCollection.Count">
+            <summary>
+            Gets the number of elements contained in the <see cref="T:Rebex.Net.SftpItemCollection"/>.
+            </summary>
+            <value>The number of elements contained in the <see cref="T:Rebex.Net.SftpItemCollection"/>.</value>
+        </member>
+        <member name="P:Rebex.Net.SftpItemCollection.Item(System.Int32)">
+            <summary>
+            Gets the <see cref="T:Rebex.Net.SftpItem"/> at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the <see cref="T:Rebex.Net.SftpItem"/> to get.</param>
+            <value><see cref="T:Rebex.Net.SftpItem"/> of the specified index.</value>
+        </member>
+        <member name="P:Rebex.Net.SftpItemCollection.Item(System.String)">
+            <summary>
+            Gets the <see cref="T:Rebex.Net.SftpItem"/> of the specified name.
+            </summary>
+            <param name="name">The name of the <see cref="T:Rebex.Net.SftpItem"/> to get.</param>
+            <value><see cref="T:Rebex.Net.SftpItem"/> of the specified name.</value>
+        </member>
+        <member name="P:Rebex.Net.SftpItemCollection.IsSynchronized">
+            <summary>
+            Gets a value indicating whether access to <see cref="T:Rebex.Net.SftpItemCollection"/> is synchronized (thread-safe).
+            </summary>
+            <value>A value indicating whether access to <see cref="T:Rebex.Net.SftpItemCollection"/> is synchronized.</value>
+        </member>
+        <member name="T:Rebex.Net.SftpState">
+            <summary>
+            State of the <see cref="T:Rebex.Net.Sftp"/> object.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SftpState.Disconnected">
+            <summary>Client is not connected.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpState.Connecting">
+            <summary>Connecting to server.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpState.Connected">
+            <summary>Server is ready and awaiting commands.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpState.Ready">
+            <summary>Sending command to the server.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpState.Disposed">
+            <summary>Object is disposed and must not be used.</summary>
+        </member>
+        <member name="T:Rebex.Net.SftpTransferState">
+            <summary>
+            State of the SFTP transfer.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SftpTransferState.None">
+            <summary>
+            No transfer.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SftpTransferState.Uploading">
+            <summary>Uploading data.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpTransferState.Downloading">
+            <summary>Downloading data.</summary>
+        </member>
+        <member name="T:Rebex.Net.SftpErrorCode">
+            <summary>
+            SFTP internal error code.
+            </summary>
+        </member>
+        <member name="F:Rebex.Net.SftpErrorCode.UnknownError">
+            <summary>Unknown error.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpErrorCode.EndOfFile">
+            <summary>End of file.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpErrorCode.NoSuchFile">
+            <summary>No such file</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpErrorCode.PermissionDenied">
+            <summary>Permission denied.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpErrorCode.Failure">
+            <summary>Failure.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpErrorCode.BadMessage">
+            <summary>Bad message.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpErrorCode.NoConnection">
+            <summary>No connection.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpErrorCode.ConnectionLost">
+            <summary>Connection lost.</summary>
+        </member>
+        <member name="F:Rebex.Net.SftpErrorCode.UnsupportedOperation">
+            <summary>Unsupported operation.</summary>
+        </member>
+        <member name="T:Rebex.Net.SftpConnectionState">
+            <summary>
+            Represents the <see cref="T:Rebex.Net.Sftp">Sftp</see> object connection state.
+            </summary>
+        </member>
+        <member name="P:Rebex.Net.SftpConnectionState.Connected">
+            <summary>
+            Returns a value indicating whether the object is connected.
+            </summary>
+            <value>True if connectet; oherwise false.</value>
+        </member>
+        <member name="P:Rebex.Net.SftpConnectionState.NativeErrorCode">
+            <summary>
+            Gets the Win32 socket error code.
+            </summary>
+            <value>Win32 error code.</value>
+            <remarks>Returns 0 if no socket error code is available.</remarks>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,71 @@
+﻿@model IEnumerable<LCLFileUpload.Models.tblRentalDLPMStoreLink>
+@{
+//    ViewBag.TitleStyleClass = "About";
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "grdManageUSersStores" + ViewData["LoginID"];
+        settings.KeyFieldName = "RecID";
+        settings.CallbackRouteValues = new { Controller = "Account", Action = "_grdManageUsersStores", LoginID = ViewData["LoginID"] };
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+        settings.Theme = "BlackGlass";
+        
+        settings.SettingsPager.PageSize = 200;
+        settings.Settings.VerticalScrollBarMode = ScrollBarMode.Visible;
+        settings.Settings.VerticalScrollableHeight = 800;
+        settings.Settings.VerticalScrollBarStyle = GridViewVerticalScrollBarStyle.Virtual;
+        settings.ControlStyle.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+        settings.ControlStyle.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+        settings.ControlStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+//        settings.SettingsPopup.EditForm.Width = 600;
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Account", Action = "_grdManageUsersStoresAdd", LoginID = ViewData["LoginID"] };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Account", Action = "_grdManageUsersStoresUpdate", LoginID = ViewData["LoginID"] };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Account", Action = "_grdManageUsersStoresDelete", LoginID = ViewData["LoginID"] };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+        settings.SettingsText.ConfirmDelete = "Are you sure?";
+        settings.SettingsText.CommandUpdate = "Update";
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.NewButton.Visible = true;
+        settings.CommandColumn.DeleteButton.Visible = true;
+        settings.CommandColumn.DeleteButton.Text = "Delete";
+        settings.CommandColumn.EditButton.Visible = true;
+        settings.CommandColumn.EditButton.Text = "Edit";
+        settings.SettingsPager.Visible = false;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
+        settings.Settings.ShowFilterRowMenu = false; 
+        
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.CommandColumn.ShowSelectCheckbox = false;
+        settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = false;
+        settings.SettingsDetail.ShowDetailRow = false;
+
+//        settings.Columns.Add(column =>
+  //      {
+    //        column.FieldName = "UserID";
+        // column.Caption = "User ID";
+        //    column.EditFormSettings.Visible = DefaultBoolean.False;
+          //  column.Width = System.Web.UI.WebControls.Unit.Percentage(20);
+        //}); 
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "StoreNo";
+            column.Caption = "Store No";
+            column.Width = System.Web.UI.WebControls.Unit.Percentage(20);
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "email";
+            column.Caption = "Phone No";
+            column.Width = System.Web.UI.WebControls.Unit.Percentage(20);
+        });
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()
+
