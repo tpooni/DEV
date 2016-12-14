@@ -21,6 +21,9 @@ namespace LCLFileUpload.Models
         public int LoginID { get; set; }
         public bool JobNoMismatch { get; set; }
         public bool InvalidFile { get; set; }
+        public Nullable<long> Lines { get; set; }
+        public Nullable<long> Qty { get; set; }
+        public Nullable<long> Ext { get; set; }
     
         public virtual tblRentalFileInfo tblRentalFileInfo1 { get; set; }
         public virtual tblRentalFileInfo tblRentalFileInfo2 { get; set; }
